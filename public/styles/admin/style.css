@@ -1,0 +1,632 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+html {
+  scroll-behavior: smooth; }
+
+body {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #efebeb; }
+
+ol, ul {
+  list-style-type: none; }
+
+a {
+  text-decoration: none; }
+
+.container {
+  max-width: 1160px;
+  margin: 0 auto; }
+
+.wrapper {
+  display: none; }
+
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
+header,
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999; }
+
+header {
+  height: 60px;
+  width: calc(100% - 300px);
+  margin-left: 300px; }
+
+.sidebar {
+  width: 300px; }
+
+.body__content {
+  padding: 20px;
+  margin-top: 60px;
+  margin-left: 300px; }
+
+header {
+  background-color: #fafbfc; }
+  header ul {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 10px 20px; }
+
+.sidebar {
+  height: 100vh;
+  background-color: #ffffff;
+  box-shadow: 1px 0 5px 0 rgba(0, 0, 0, 0.1); }
+  .sidebar__bars {
+    height: 60px;
+    background-color: #fafbfc;
+    box-sizing: border-box;
+    padding: 20px;
+    text-align: right; }
+
+.bars {
+  position: relative;
+  width: 27px;
+  height: 16px;
+  background: none;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  cursor: pointer; }
+  .bars div {
+    width: inherit;
+    height: 2px;
+    background-color: #0f0f3d; }
+  .bars div:first-child,
+  .bars div:last-child {
+    position: absolute;
+    left: 0;
+    width: 32px;
+    transform-origin: 0 0; }
+  .bars div:first-child {
+    top: 0; }
+  .bars div:last-child {
+    bottom: 0; }
+
+.sidebar__menu {
+  padding: 20px; }
+  .sidebar__menu .menu__item:hover {
+    background-color: #d1f3ff;
+    border-radius: 8px; }
+  .sidebar__menu .menu__link {
+    display: block;
+    box-sizing: border-box;
+    padding: 15px 10px;
+    color: #000000; }
+    .sidebar__menu .menu__link--icon {
+      margin-right: 8px; }
+
+.haveDropdown {
+  position: relative; }
+  .haveDropdown * {
+    font-size: 15px;
+    color: #000000; }
+  .haveDropdown .fa-chevron-down {
+    transition: all .5s; }
+  .haveDropdown .dropdown {
+    height: 0;
+    overflow: hidden;
+    transition: all .5s; }
+    .haveDropdown .dropdown__list {
+      padding-left: 20px; }
+    .haveDropdown .dropdown__item:hover {
+      background-color: #f8bc78;
+      border-radius: 8px; }
+    .haveDropdown .dropdown__link {
+      display: block;
+      padding: 9px 10px; }
+      .haveDropdown .dropdown__link i {
+        margin-right: 10px; }
+
+.dashboard > .title {
+  margin-bottom: 20px; }
+
+.dashboard__list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%; }
+
+.dashboard__item {
+  box-sizing: border-box;
+  padding: 15px;
+  margin-bottom: 15px;
+  margin-right: 15px;
+  width: calc(100% / 4 - 15px + 15px/4);
+  height: 150px;
+  background-color: #ffffff;
+  overflow: hidden; }
+  .dashboard__item:hover {
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3); }
+  .dashboard__item--box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%; }
+    .dashboard__item--box > div {
+      text-align: center; }
+    .dashboard__item--box .more {
+      margin-top: 15px;
+      width: 100%;
+      text-align: right; }
+      .dashboard__item--box .more a {
+        font-weight: 600;
+        font-size: 14px;
+        color: #2051bb; }
+
+.dashboard__item:nth-child(4n) {
+  margin-right: 0; }
+
+.product {
+  box-sizing: border-box;
+  padding: 20px;
+  background-color: #ffffff;
+  height: 585px; }
+
+.product__row {
+  display: flex;
+  justify-content: space-between; }
+  .product__row button {
+    padding: 15px 25px;
+    background-color: #ffffff;
+    color: #363636;
+    font-size: 15px;
+    font-weight: 600;
+    border: 2px solid #bebbbb;
+    border-radius: 6px;
+    outline: none;
+    cursor: pointer; }
+
+.product .viewDetails thead tr td:first-child {
+  width: 40%; }
+
+.cate {
+  box-sizing: border-box;
+  padding: 20px;
+  background-color: #ffffff;
+  height: 585px; }
+
+.cate__row {
+  display: flex;
+  justify-content: space-between; }
+  .cate__row button {
+    padding: 15px 25px;
+    background-color: #ffffff;
+    color: #363636;
+    font-size: 15px;
+    font-weight: 600;
+    border: 2px solid #bebbbb;
+    border-radius: 6px;
+    outline: none;
+    cursor: pointer; }
+
+.form__add {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none; }
+  .form__add form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 40px 70px;
+    background-color: #ffffff; }
+    .form__add form label {
+      display: block;
+      margin-bottom: 5px; }
+    .form__add form input, .form__add form textarea, .form__add form select {
+      width: 100%;
+      border: 1px solid #000000;
+      border-radius: 4px;
+      padding: 7px 10px;
+      box-sizing: border-box; }
+    .form__add form textarea {
+      resize: none; }
+
+.form__add--container {
+  width: 400px; }
+
+.form__add--item > div {
+  margin: 10px 0; }
+
+.form__add--button {
+  padding: 10px;
+  width: 100%;
+  text-align: center; }
+  .form__add--button button {
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: 500;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 8px;
+    cursor: pointer; }
+  .form__add--button .btn__save {
+    background-color: #38b638; }
+    .form__add--button .btn__save a {
+      color: #ffffff; }
+  .form__add--button .btn__cancel {
+    background-color: #f1ecec; }
+
+.product__form--add form {
+  box-sizing: border-box;
+  height: 90vh;
+  overflow: auto;
+  padding: 20px 70px 30px 70px; }
+
+.product__form--add .form__add--container {
+  display: flex;
+  width: 900px; }
+  .product__form--add .form__add--container > .form__add--item:first-child {
+    padding-right: 20px;
+    width: 55%; }
+  .product__form--add .form__add--container > .form__add--item:last-child {
+    width: 45%; }
+
+.product__form--add .label__upload--image {
+  cursor: pointer; }
+  .product__form--add .label__upload--image img {
+    width: 260px;
+    height: 230px;
+    object-fit: cover; }
+
+.product__form--add #file {
+  display: none; }
+
+.product__form--add .size > div {
+  margin-bottom: 5px; }
+
+.product__form--add .size label {
+  display: inline; }
+
+.product__form--add .size input[type=checkbox] {
+  width: auto; }
+
+.viewDetails {
+  margin-top: 30px;
+  height: 400px;
+  overflow: auto; }
+  .viewDetails table {
+    border-collapse: collapse;
+    width: 100%; }
+  .viewDetails thead,
+  .viewDetails tbody tr {
+    border-bottom: 1px solid #000000; }
+  .viewDetails thead tr {
+    height: 45px; }
+  .viewDetails thead td {
+    font-weight: 700; }
+  .viewDetails tbody tr {
+    height: 40px; }
+    .viewDetails tbody tr:hover {
+      background-color: #d8dcdb !important;
+      cursor: pointer; }
+    .viewDetails tbody tr > td:first-child {
+      box-sizing: border-box;
+      padding-right: 20px; }
+  .viewDetails tbody tr:nth-child(even) {
+    background-color: #f1f3f3; }
+  .viewDetails tbody td img {
+    display: block;
+    box-sizing: border-box;
+    padding: 10px;
+    width: 60px;
+    height: 60px;
+    object-fit: cover; }
+  .viewDetails .actions button {
+    background: none;
+    border: none;
+    outline: none;
+    margin-right: 10px;
+    cursor: pointer; }
+  .viewDetails .actions i {
+    font-size: 18px; }
+  .viewDetails .actions #details i {
+    color: #0a9a86; }
+  .viewDetails .actions #edit i {
+    color: #d60808; }
+  .viewDetails .actions #delete i {
+    color: #000000; }
+
+.edit {
+  box-sizing: border-box;
+  padding: 20px;
+  height: 585px;
+  background-color: #ffffff;
+  overflow: auto; }
+
+.edit__title {
+  margin-bottom: 20px; }
+
+.form__group {
+  margin: 10px 0; }
+  .form__group label {
+    display: block;
+    margin-bottom: 5px; }
+  .form__group input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 16px; }
+
+.delete {
+  box-sizing: border-box;
+  padding: 20px;
+  height: 585px;
+  background-color: #ffffff;
+  overflow: auto; }
+
+.delete__title {
+  margin-bottom: 20px; }
+
+.form__actions {
+  display: flex;
+  justify-content: center; }
+  .form__actions button {
+    margin: 10px 5px;
+    border: 1px solid #000000;
+    outline: none;
+    cursor: pointer; }
+  .form__actions .btn__save {
+    width: 100px;
+    background-color: #38b638;
+    color: #ffffff; }
+  .form__actions .btn__cancel {
+    background-color: #f1ecec; }
+    .form__actions .btn__cancel a {
+      display: block;
+      width: 100px;
+      height: 40px;
+      line-height: 40px;
+      color: #000000; }
+
+.color > div:last-child {
+  display: flex; }
+  .color > div:last-child > div:first-child {
+    margin-right: 25px; }
+
+.color img {
+  width: 60px;
+  height: 60px; }
+
+.edit__product .edit__title {
+  margin-bottom: 10px; }
+
+.edit__product form {
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: auto;
+  padding: 0; }
+
+.edit__product .form__add--container {
+  width: 100%; }
+  .edit__product .form__add--container > .form__add--item:first-child {
+    padding-right: 40px;
+    width: 65%; }
+  .edit__product .form__add--container > .form__add--item:last-child {
+    width: 35%; }
+
+.form__group select {
+  width: 100%;
+  padding: 10px; }
+
+.form__group textarea {
+  width: 100%;
+  padding: 7px 10px;
+  box-sizing: border-box;
+  resize: none; }
+
+.section__payment {
+  box-sizing: border-box;
+  padding: 20px;
+  background-color: #ffffff;
+  height: 585px; }
+
+.payment__table table tbody tr td:first-child {
+  width: 60px; }
+
+.payment__table table tbody tr td:nth-child(2) {
+  box-sizing: border-box;
+  max-width: 250px;
+  padding-right: 15px; }
+
+.payment__table table tbody tr td:nth-child(3) {
+  width: 300px; }
+
+.section__paymentDetails {
+  box-sizing: border-box;
+  height: 520px; }
+
+.paymentDetails__title {
+  margin-bottom: 10px; }
+
+.paymentDetails__list {
+  height: 490px;
+  overflow: auto; }
+
+.paymentDetails__item table {
+  box-sizing: border-box;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: #ffffff;
+  padding: 20px; }
+  .paymentDetails__item table .row__codeOrder td {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #969292; }
+  .paymentDetails__item table .row__infoOrder td {
+    padding-top: 15px; }
+  .paymentDetails__item table .col__name,
+  .paymentDetails__item table .col__status,
+  .paymentDetails__item table .col__price,
+  .paymentDetails__item table .col__quantity {
+    vertical-align: baseline;
+    box-sizing: border-box; }
+  .paymentDetails__item table .col__image {
+    width: 80px;
+    padding-right: 20px; }
+    .paymentDetails__item table .col__image img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover; }
+  .paymentDetails__item table .col__name {
+    width: 300px;
+    padding-right: 40px; }
+    .paymentDetails__item table .col__name > div {
+      width: 300px; }
+      .paymentDetails__item table .col__name > div a {
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; }
+    .paymentDetails__item table .col__name div:first-child a {
+      color: #000000; }
+    .paymentDetails__item table .col__name div:last-child a {
+      color: #757575;
+      font-size: 13px; }
+  .paymentDetails__item table .col__price {
+    padding-left: 15px;
+    width: 120px; }
+    .paymentDetails__item table .col__price--new {
+      color: #f57224;
+      font-weight: 600;
+      font-size: 16px; }
+    .paymentDetails__item table .col__price--old {
+      color: #9fa19f;
+      font-size: 14px;
+      text-decoration: line-through; }
+    .paymentDetails__item table .col__price--discount {
+      color: #080808;
+      font-size: 15px; }
+    .paymentDetails__item table .col__price--trash a {
+      color: #9fa19f; }
+  .paymentDetails__item table .col__status span {
+    display: block;
+    padding: 4px 3px;
+    width: 80px;
+    text-align: center;
+    background-color: #dcd5d5;
+    border-radius: 10px; }
+  .paymentDetails__item table .col__manage {
+    width: 30%;
+    text-align: right; }
+
+.paymentDetails__details .paymentDetaills__item {
+  background-color: transparent;
+  padding: 0;
+  margin-bottom: 15px; }
+  .paymentDetails__details .paymentDetaills__item table {
+    background-color: #ffffff;
+    padding: 20px; }
+
+.addressReciveAndTotalMoney {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0; }
+  .addressReciveAndTotalMoney .addressRecive,
+  .addressReciveAndTotalMoney .totalMoney {
+    box-sizing: border-box;
+    padding: 15px;
+    width: calc(50% - 15px/2);
+    background-color: #ffffff; }
+    .addressReciveAndTotalMoney .addressRecive > div,
+    .addressReciveAndTotalMoney .totalMoney > div {
+      margin-bottom: 10px; }
+    .addressReciveAndTotalMoney .addressRecive .title,
+    .addressReciveAndTotalMoney .totalMoney .title {
+      margin-bottom: 20px;
+      font-size: 18px; }
+  .addressReciveAndTotalMoney .totalMoney > div {
+    display: flex;
+    justify-content: space-between; }
+  .addressReciveAndTotalMoney .totalMoney .total {
+    padding-top: 10px;
+    border-top: 1px solid #c3bfbf; }
+
+.step__status {
+  box-sizing: border-box;
+  padding: 15px;
+  background-color: #ffffff;
+  height: 200px; }
+  .step__status form {
+    width: 100%;
+    height: 100%; }
+  .step__status .step {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row-reverse;
+    list-style: none;
+    height: 70%;
+    transform: translateY(-20px); }
+  .step__status input {
+    display: none; }
+  .step__status input:checked ~ label {
+    background-color: #4caf50;
+    transition: all .4s; }
+    .step__status input:checked ~ label::before {
+      background-color: #4caf50; }
+  .step__status label {
+    transition: all .4s;
+    position: relative;
+    display: block;
+    width: 200px;
+    height: 3px;
+    border: 1px solid #4caf50; }
+    .step__status label::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      z-index: 3;
+      width: 20px;
+      height: 20px;
+      background-color: #ffffff;
+      border: 5px solid #4caf50;
+      border-radius: 50%;
+      box-sizing: border-box;
+      cursor: pointer; }
+  .step__status .success {
+    width: 0; }
+    .step__status .success span {
+      width: 106px; }
+  .step__status span {
+    position: absolute;
+    bottom: -30px;
+    transform: translateX(-50%); }
+  .step__status button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 15px;
+    background-color: #35c935;
+    color: #ffffff;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    cursor: pointer; }
+
+.revenue {
+  width: 100%;
+  height: 585px;
+  background-color: #ffffff; }

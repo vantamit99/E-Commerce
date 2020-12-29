@@ -1,0 +1,110 @@
+<aside class="sidebar">
+    <div class="sidebar__bars">
+        <button class="bars">
+            <div></div>
+            <div></div>
+            <div></div>
+        </button>
+    </div>
+    <ol class="sidebar__menu">
+        <li class="menu__item">
+            <a class="menu__link" href="/dashboard">
+                <span class="menu__link--icon"><i class="fa fa-home"></i></span>
+                <span class="menu__link--title">Dashboard</span>
+            </a>
+        </li>
+        <li class="menu__item">
+            <a id="cate" class="menu__link load-html" href="/dashboard/cate">
+                <span class="menu__link--icon"><i class="fa fa-id-card"></i></span>
+                <span class="menu__link--title">Category</span>
+            </a>
+        </li>
+        <li class="menu__item">
+            <a class="menu__link load-html" href="/dashboard/product">
+                <span class="menu__link--icon"><i class="fab fa-product-hunt"></i></span>
+                <span class="menu__link--title">Product</span>
+            </a>
+        </li>
+        <li class="menu__item">
+            <a class="menu__link load-html" href="/dashboard/rank">
+                <span class="menu__link--icon"><i class="fa fa-gem"></i></span>
+                <span class="menu__link--title">Rank</span>
+            </a>
+        </li>
+        <li class="menu__item">
+            <a class="menu__link load-html" href="/dashboard/customer">
+                <span class="menu__link--icon"><i class="fa fa-smile"></i></span>
+                <span class="menu__link--title">Customer</span>
+            </a>
+        </li>
+        <li class="menu__item">
+            <a class="menu__link load-html" href="/dashboard/rating">
+                <span class="menu__link--icon"><i class="fa fa-star"></i></span>
+                <span class="menu__link--title">Star</span>
+            </a>
+        </li>
+        <li class="menu__item">
+            <a class="menu__link load-html" href="/dashboard/revenue">
+                <span class="menu__link--icon"><i class="fa fa-chart-line"></i></span>
+                <span class="menu__link--title">Revenue</span>
+            </a>
+        </li>
+        <li class="menu__item haveDropdown">
+            <a class="menu__link load-html" href="javascript:void(0)">
+                <span class="menu__link--icon"><i class="fa fa-money-bill-alt"></i></span>
+                <span class="menu__link--title">Order Payment</span>
+                <span><i class="fa fa-chevron-down"></i></span>
+            </a> 
+            <div class="dropdown">
+                <ol class="dropdown__list">
+                    <li class="dropdown__item">
+                        <a class="dropdown__link" href="/dashboard/payment/paypal">
+                            <span><i class="fab fa-paypal"></i></span>
+                            <span>Payment Paypal</span>
+                        </a>                    
+                    </li>
+                    <li class="dropdown__item">
+                        <a class="dropdown__link"  href="/dashboard/payment/delivery">
+                            <span><i class="fa fa-truck"></i></span>
+                            <span>Payment On Delivery</span>
+                        </a>
+                    </li>
+                    <li class="dropdown__item">
+                        <a class="dropdown__link"  href="/dashboard/payment/cancel">
+                            <span><i class="fa fa-window-close"></i></span>
+                            <span>Cancel</span>
+                        </a>
+                    </li>
+                </ol>
+            </div> 
+        </li>
+    </ol>
+</aside>
+
+<script>
+    const dropdownCollapse = function() {
+        var haveDropdown = document.querySelectorAll('.haveDropdown');
+        var dropdown = document.querySelectorAll('.haveDropdown .dropdown');
+        var dropdownList = document.querySelectorAll('.haveDropdown .dropdown__list');
+        var iconChevron = document.querySelectorAll('.haveDropdown .fa-chevron-down');
+        var heightDropdownList = 0;
+        var isClick = false;
+        
+        for(let i = 0; i < haveDropdown.length; i++) {
+            haveDropdown[i].addEventListener('click',  ()=> {
+                isClick = !isClick;
+                if(isClick) {
+                    heightDropdownList = dropdownList[i].offsetHeight;
+                    dropdown[i].style.height = heightDropdownList + 'px';
+                    dropdown[i].style.transition = 'all .5s';
+                    iconChevron[i].style.transform = 'rotate(-180deg)';
+                    iconChevron[i].style.transition = 'all .5s';
+
+                    return;
+                }
+                dropdown[i].style.height = '0px';
+                iconChevron[i].style.transform = 'rotate(0)';
+            });
+        }
+    }();
+</script>

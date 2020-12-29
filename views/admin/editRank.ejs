@@ -1,0 +1,17 @@
+<div class="edit">
+    <h2 class="edit__title">Edit</h2>
+    <form class="form" method="POST" action="/dashboard/rank/edit/<%- docRank._id %>">
+        <div class="form__group">
+            <label for="nameRank">Tên Hạng:</label>
+            <input id="nameRank" type="text" name="nameRank" value="<%- docRank.nameRank %>" />
+        </div>
+        <div class="form__group">
+            <label for="pointRank">Điểm Hạng:</label>
+            <input id="pointRank" type="number" min="0" name="pointRank" value="<%- docRank.pointRank %>" />
+        </div>
+        <div class="form__group form__actions">
+            <button class="btn__save" type="submit">Lưu</button>
+            <button class="btn__cancel" type="button"><a href="/dashboard/rank">Hủy</a></button>
+        </div>
+    </form>
+</div>

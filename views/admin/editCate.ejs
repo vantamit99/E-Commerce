@@ -1,0 +1,13 @@
+<div class="edit">
+    <h2 class="edit__title">Edit</h2>
+    <form class="form" method="POST" action="/dashboard/cate/edit/<%- docCate._id %>">
+        <div class="form__group">
+            <label for="cateProduct">Tên Loại Giày:</label>
+            <input id="cateProduct" type="text" name="editCateName" value="<%- docCate.name %>" />
+        </div>
+        <div class="form__group form__actions">
+            <button class="btn__save" type="submit">Lưu</button>
+            <button class="btn__cancel" type="button"><a href="/dashboard/cate">Hủy</a></button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,163 @@
+<main>
+    <section class="section__history">
+        <div class="container">
+            <div class="history history__details">
+                <h2 class="history__title">Chi Tiết Đơn Hàng</h2>
+                <div class="history__list">
+                    <div class="history__item">
+                        <table>
+                            <tr class="row__codeOrder">
+                                <td colspan="4">
+                                    <div>Đơn hàng: <%- docOrder._id %></div>
+                                    <div>Ngày đặt: <%- docOrder.dateBook %></div>
+                                </td>
+                                <td class="col__manage">
+                                    <span>Tổng tiền: <b><%- String(docOrder.totalAllMoney).replace(/\d{3}$/g,',000') %></b></span>
+                                </td>
+                            </tr>
+                            <% docOrder.listProduct.forEach(item => { %>
+                                <tr class="row__infoOrder">
+                                    <td class="col__image">
+                                        <a href="/product/<%- item.product._id %>">
+                                            <img src="/assets/uploads/<%- item.product.image %>" />
+                                        </a>
+                                    </td>
+                                    <td class="col__name">
+                                        <div><a href="/product/<%- item.product._id %>"><%- item.product.name %></a></div>
+                                        <div><a href="/product/<%- item.product._id %>"><%- item.color %> & size: <%- item.size %></a></div>
+                                    </td>
+                                    <td class="col__price">
+                                        <% priceNew = item.product.price - item.product.price*item.product.discount/100 %>
+                                        <div class="col__price--new"><%- String(priceNew).replace(/\d{3}$/g,',000') %></div>
+                                        <div class="col__price--old"><%- String(item.product.price).replace(/\d{3}$/g,',000') %></div>
+                                        <div class="col__price--discount">-<%- item.product.discount %>%</div>                                        
+                                    </td>
+                                    <td class="col__quantity">
+                                        <span>Số Lượng:</span>
+                                        <span><%- item.quantity %></span>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </table>
+                        <div class="mobile__history--list mobile__history--listDetails">
+                            <div class="item">
+                                <div class="row__idOrder">
+                                    <div>
+                                        <div>Đơn hàng: <%- docOrder._id %></div>
+                                        <div>Ngày đặt: <%- docOrder.dateBook %></div>
+                                    </div>
+                                    <div>
+                                        <span>Tổng tiền: <b><%- String(docOrder.totalAllMoney).replace(/\d{3}$/g,',000') %></b></span>
+                                    </div>
+                                </div>
+                                <div class="row__listOrder">
+                                    <% docOrder.listProduct.forEach(item => { %>
+                                        <div class="row__listOrder--item">
+                                            <div>
+                                                <a href="/product/<%- item.product._id %>">
+                                                    <img src="/assets/uploads/<%- item.product.image %>" />
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <div class="row__nameColor">
+                                                    <div class="col__pro--name"><a href="/product/<%- item.product._id %>"><%- item.product.name %></div>
+                                                    <div class="col__pro--color"><a href="/product/<%- item.product._id %>"><%- item.color %> & size: <%- item.size %></a></div>
+                                                </div>
+                                                <div class="row__priceQuantity">
+                                                    <div>
+                                                        <% priceNew = item.product.price - item.product.price*item.product.discount/100 %>
+                                                        <div class="col__price--new"><%- String(priceNew).replace(/\d{3}$/g, ',000') %></div>
+                                                        <div class="col__sale">
+                                                            <span class="col__sale--priceOld"><%- String(item.product.price).replace(/\d{3}$/g, ',000') %></span>
+                                                            <span class="col__sale--discount">-<%- item.product.discount %>%</span>
+                                                        </div>
+                                                        <div class="col__trash">
+                                                            <a href="/cart/delete/<%- item._id %>"><i class="fa fa-trash"></i></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col__quantity">
+                                                        <span>Số Lượng:</span>
+                                                        <span><%- item.quantity %></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <% }) %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="addressReciveAndTotalMoney">
+                            <div class="addressRecive">
+                                <h2 class="title">Địa Chỉ Giao Hàng</h2>
+                                <div><b>Người nhận:</b> <%- docOrder.peopleRecive %></div>
+                                <div><b>Địa chỉ nhận hàng:</b> <%- docOrder.addressRecive %></div>
+                                <div><b>Số điện thoại:</b> <%- docOrder.phone %></div>
+                            </div>
+                            <div class="totalMoney">
+                                <h2 class="title">Chi Tiết Hóa Đơn</h2>
+                                <div>
+                                    <span>Tiền sản phẩm</span>
+                                    <span><%- String(docOrder.totalMoneyPro).replace(/\d{3}$/g,',000') %></span>
+                                </div>
+                                <div>
+                                    <span>Phí vận chuyển</span>
+                                    <span><%- String(docOrder.shipping).replace(/\d{3}$/g,',000') %></span>
+                                </div>
+                                <div class="total">
+                                    <span>Tổng tiền</span>
+                                    <span><b><%- String(docOrder.totalAllMoney).replace(/\d{3}$/g,',000') %></b></span>
+                                </div>
+                                <div>Phương thức thanh toán: <%- docOrder.paymentMethods %></div>
+                            </div>
+                        </div>
+                        <div class="step__status">
+                            <input id="idStatus" type="hidden" value="<%- docOrder.status %>" />
+                            <% if(docOrder.status == '0') { %>
+                                <div class="step">
+                                    <input id="success" type="radio" name="status" checked disabled />
+                                    <label class="success" for="success">                                
+                                        <span>Đã Hủy</span>
+                                    </label>
+                                    <input id="shipping" type="radio" name="status" disabled />
+                                    <label for="shipping">
+                                        <span>Đơn Hàng</span>
+                                    </label>
+                                </div>
+                            <% } else { %>
+                                <div class="step">
+                                    <input id="success" type="radio" name="status" value="4" disabled />
+                                    <label class="success" for="success">
+                                        <span>Đã Giao Hàng</span>
+                                    </label>
+                                    <input id="shipping" type="radio" name="status" value="3" disabled />
+                                    <label for="shipping">
+                                        <span>Đang Giao Hàng</span>
+                                    </label>
+                                    <input id="packing" type="radio" name="status" value="2" disabled />
+                                    <label for="packing">
+                                        <span>Đã Đóng Gói</span>
+                                    </label>
+                                    <input id="handling" type="radio" name="status" value="1" disabled />
+                                    <label class="handling" for="handling">
+                                        <span>Đang Xử Lý</span>
+                                    </label>
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+<script>
+    var idStatus = document.getElementById('idStatus');
+    var stepStatus = document.querySelectorAll('.step input');
+    for(let i = 0; i < stepStatus.length; i++) {
+        if(stepStatus[i].value == idStatus.value) {
+            stepStatus[i].checked = true;
+        }
+    }
+</script>

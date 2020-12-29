@@ -1,0 +1,236 @@
+<main>
+    <section class="section__cart">
+        <div class="container">
+            <% if(docCart.cus != null) { %>
+                <div class="cart">
+                    <div class="cart__list">
+                        <table>
+                            <% listPro.map(item => { %>
+                                <tr>
+                                    <td>
+                                        <input checked type="checkbox" disabled />
+                                    </td>
+                                    <td class="col__image">
+                                        <a href="javascript:void(0)">
+                                            <img src="/assets/uploads/<%- item.product.image %>" />
+                                        </a>
+                                    </td>
+                                    <td class="col__name">
+                                        <div><a href="javascript:void(0)"><%- item.product.name %></a></div>
+                                        <div><a href="javascript:void(0)"><%- item.color %> & size: <%- item.size %></a></div>
+                                    </td>
+                                    <td class="col__price">
+                                        <% priceNew = item.product.price - item.product.price*item.product.discount/100 %>
+                                        <div class="col__price--new"><%- String(priceNew).replace(/\d{3}$/g, ',000') %></div>
+                                        <div class="col__price--old"><%- String(item.product.price).replace(/\d{3}$/g, ',000') %></div>
+                                        <div class="col__price--discount">-<%- item.product.discount %>%</div>                                        
+                                    </td>
+                                    <td class="col__quantity">
+                                        <button disabled getidcart="<%- item._id %>" class="cart__decrease">-</button>
+                                        <input disabled class="cart__quantity" type="text" value="<%- item.quantity %>" />
+                                        <button disabled getidcart="<%- item._id %>" class="cart__increase">+</button>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </table>
+                    </div>
+                    <div class="cart__sidebar">
+                        <div class="list__order">
+                            <form action="/payment/checkout" method="post">
+                                <h2>Thông tin nhận hàng</h2>
+                                <div class="shipAndBill">
+                                    <ol>
+                                        <li>
+                                            <label for="peopleRecive">Tên người nhận:</label>
+                                            <input id="peopleRecive" type="text" name="peopleRecive" value="<%- docUser.lastname %>" placeholder="Tên người nhận" required />
+                                        </li>
+                                        <li>
+                                            <label for="addressRecive">Địa chỉ nhận:</label>
+                                            <input id="addressRecive" type="text" name="addressRecive" value="<%- docUser.cus.deliveryAddress %>" placeholder="Địa chi nhận" required />
+                                        </li>
+                                        <li>
+                                            <label for="phone">Số điện thoại:</label>
+                                            <input id="phone" type="text" value="<%- docUser.cus.phone %>" name="phone" placeholder="Số điện thoại" required />
+                                            
+                                        </li>
+                                        <li>
+                                            <label>Phương thức thanh toán:</label>
+                                            <select class="methodPayment" name="methodPayment">
+                                                <option selected value="thanh toán khi nhận hàng">Thanh toán khi nhận hàng</option>                                                
+                                                <option value="paypal">Paypal</option>
+                                            </select>
+                                        </li>
+                                    </ol>
+                                </div>
+                                <h2>Chi tiết đơn hàng</h2>
+                                <div class="order__item">
+                                    <div class="order__item--left">
+                                        <div>Tổng số lượng(<%- totalPro %>)</div>
+                                        <% if(rankCurrent != "anonymous") { %>
+                                            <div>Giảm</div>
+                                        <% } %> 
+                                        <div>Phí vận chuyển</div>
+                                        <div>
+                                            <input id="codesale" type="text" placeholder="Nhập mã giảm giá" name="codeSale" />
+                                        </div>
+                                        <div>Tổng tiền:</div>
+                                    </div>
+                                    <div class="order__item--right">
+                                        <div id="moneyPro"><%- String(moneyPro).replace(/\d{3}$/g, ',000') %>đ</div>
+                                        <% if(rankCurrent == "anonymous") { %>
+                                            <div><%- String(docCart.shipping).replace(/\d{3}$/g, ',000') %>đ</div>
+                                        <% } %>
+                                        <% if(rankCurrent == "Bronze") { %>
+                                            <div>0%</div>
+                                            <div>Freeship</div>                                
+                                        <% } %>
+                                        <% if(rankCurrent == "Silver") { %>
+                                            <div>2%</div>
+                                            <div>Freeship</div>                                            
+                                        <% } %>
+                                        <% if(rankCurrent == "Gold") { %>
+                                            <div>4%</div>
+                                            <div>Freeship</div>                                            
+                                        <% } %>
+                                        <% if(rankCurrent == "Diamond") { %>
+                                            <div>6%</div>
+                                            <div>Freeship</div>                                            
+                                        <% } %>
+                                        <% if(rankCurrent == "Platinum") { %>
+                                            <div>8%</div>
+                                            <div>Freeship</div>                                            
+                                        <% } %>                                        
+                                        <div>
+                                            <button type="button" class="apply">Kiểm Tra</button>
+                                        </div>                                        
+                                        <% if(rankCurrent == "anonymous") { %>
+                                            <div><%- String(moneyPro+docCart.shipping).replace(/\d{3}$/g, ',000') %>đ</div>
+                                        <% } %>     
+                                        <% if(rankCurrent == "Bronze") { %>
+                                            <div><%- String(moneyPro).replace(/\d{3}$/g, ',000') %>đ</div>
+                                        <% } %>                                  
+                                        <% if(rankCurrent == "Silver") { %>
+                                            <div><%- String(moneyPro*98/100).replace(/\d{3}$/g, ',000') %>đ</div>
+                                        <% } %>
+                                        <% if(rankCurrent == "Gold") { %>
+                                            <div><%- String(moneyPro*96/100).replace(/\d{3}$/g, ',000') %>đ</div>
+                                        <% } %>
+                                        <% if(rankCurrent == "Diamond") { %>
+                                            <div><%- String(moneyPro*94/100).replace(/\d{3}$/g, ',000') %>đ</div>
+                                        <% } %>
+                                        <% if(rankCurrent == "Platinum") { %>
+                                            <div><%- String(moneyPro*92/100).replace(/\d{3}$/g, ',000') %>đ</div>
+                                        <% } %>
+                                    </div>
+                                </div>
+                                <div>
+                                    <input type="hidden" value="<%- moneyPro %>" name="moneyPro" />
+                                    <input type="hidden" value="<%- docCart.shipping %>" name="shipping" />
+                                    <input type="hidden" value="<%- moneyPro+docCart.shipping %>" name="totalAllMoney" />
+                                    <button getidcartdetails="<%- docCart._id %>" type="submit" class="confirmCart">ĐẶT HÀNG</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <% } else if(docCart.cus == null && idCartDetailsNoLogin) { %>
+                <div class="cart">
+                    <div class="cart__list">
+                        <table>
+                            <% listPro.map(item => { %>
+                                <tr>
+                                    <td>
+                                        <input checked type="checkbox" disabled />
+                                    </td>
+                                    <td class="col__image">
+                                        <a href="javascript:void(0)">
+                                            <img src="/assets/uploads/<%- item.product.image %>" />
+                                        </a>
+                                    </td>
+                                    <td class="col__name">
+                                        <div><a href="javascript:void(0)"><%- item.product.name %></a></div>
+                                        <div><a href="javascript:void(0)"><%- item.color %> & size: <%- item.size %></a></div>
+                                    </td>
+                                    <td class="col__price">
+                                        <% priceNew = item.product.price - item.product.price*item.product.discount/100 %>
+                                        <div class="col__price--new"><%- String(priceNew).replace(/\d{3}$/g, ',000') %></div>
+                                        <div class="col__price--old"><%- String(item.product.price).replace(/\d{3}$/g, ',000') %></div>
+                                        <div class="col__price--discount">-<%- item.product.discount %>%</div>                                        
+                                    </td>
+                                    <td class="col__quantity">
+                                        <button disabled getidcart="<%- item._id %>" class="cart__decrease">-</button>
+                                        <input disabled class="cart__quantity" type="text" value="<%- item.quantity %>" />
+                                        <button disabled getidcart="<%- item._id %>" class="cart__increase">+</button>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </table>
+                    </div>
+                    <div class="cart__sidebar">
+                        <div class="list__order">
+                            <form action="/payment/checkout" method="post">
+                                <h2>Thông tin nhận hàng</h2>
+                                <div class="shipAndBill">
+                                    <ol>
+                                        <li>
+                                            <label for="peopleRecive">Tên người nhận:</label>
+                                            <input id="peopleRecive" type="text" name="peopleRecive" value="" placeholder="Tên người nhận" required />
+                                        </li>
+                                        <li>
+                                            <label for="addressRecive">Địa chỉ nhận:</label>
+                                            <input id="addressRecive" type="text" name="addressRecive" value="" placeholder="Địa chi nhận" required />
+                                        </li>
+                                        <li>
+                                            <label for="phone">Số điện thoại:</label>
+                                            <input id="phone" type="text" value="" name="phone" placeholder="Số điện thoại" required />
+                                            
+                                        </li>
+                                        <li>
+                                            <label>Phương thức thanh toán:</label>
+                                            <select class="methodPayment" name="methodPayment">
+                                                <option selected value="thanh toán khi nhận hàng">Thanh toán khi nhận hàng</option>                                                
+                                                <option value="paypal">Paypal</option>
+                                            </select>
+                                        </li>
+                                    </ol>
+                                </div>
+                                <h2>Chi tiết đơn hàng</h2>
+                                <div class="order__item">
+                                    <div class="order__item--left">
+                                        <div>Tổng số lượng(<%- totalPro %>)</div>
+                                        <div>Phí vận chuyển</div>
+                                        <div>
+                                            <input id="codesale" type="text" placeholder="Nhập mã giảm giá" name="codeSale" />
+                                        </div>
+                                        <div>Tổng tiền:</div>
+                                    </div>
+                                    <div class="order__item--right">
+                                        <div id="moneyPro"><%- String(moneyPro).replace(/\d{3}$/g, ',000') %>đ</div>
+                                        <div><%- String(docCart.shipping).replace(/\d{3}$/g, ',000') %>đ</div>
+                                        <div>
+                                            <button type="button" class="apply">Kiểm Tra</button>
+                                        </div>
+                                        <div><%- String(moneyPro+docCart.shipping).replace(/\d{3}$/g, ',000') %>đ</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <input type="hidden" value="<%- moneyPro %>" name="moneyPro" />
+                                    <input type="hidden" value="<%- docCart.shipping %>" name="shipping" />
+                                    <input type="hidden" value="<%- moneyPro+docCart.shipping %>" name="totalAllMoney" />
+                                    <button getidcartdetails="<%- docCart._id %>" type="submit" class="confirmCart">ĐẶT HÀNG</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <% } else { %>
+                <div class="cart__noPro">
+                    <h1>Không Có Sẩn Phẩm Trong Giỏ Hàng</h1>
+                    <a href="/">Tiếp Tục Mua Sắm</a>
+                </div>
+            <% } %>
+        </div>
+    </section>
+</main>
+
+

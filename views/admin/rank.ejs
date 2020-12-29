@@ -1,0 +1,56 @@
+<div class="cate">
+    <div class="cate__row">
+        <h2>Danh Sách Các Hạng Khuyến Mãi</h2>
+        <button class="open__modal--add">+ Thêm</button>
+    </div>
+    <div class="viewDetails">
+        <table>
+            <thead>
+                <tr>
+                    <td>Tên Hạng</td>
+                    <td>Điểm Hạng</td>
+                    <td>Hành động</td>
+                </tr>
+            </thead>
+            <tbody>
+                <% docRank.forEach(val => { %>
+                    <tr>
+                        <td><%- val.nameRank %></td>
+                        <td><%- val.pointRank %> VND</td>
+                        <td class="actions">
+                            <button id="edit">
+                                <a href="/dashboard/rank/edit/<%- val._id %>"><i class="fas fa-pencil-alt"></i></a>
+                            </button>
+                            <button id="delete">
+                                <a href="/dashboard/rank/delete/<%- val._id %>"><i class="fas fa-trash-alt"></i></a>
+                            </button>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="form__add">
+    <form action="/dashboard/rank/add" method="POST">
+        <div class="form__add--container">
+            <div class="form__add--item">
+                <div>
+                    <label for="nameRank">Tên Hạng:</label>
+                    <input id="nameRank" type="text" name="nameRank" required />
+                </div>
+                <div>
+                    <label for="pointRank">Điểm Hạng:</label>
+                    <input id="pointRank" type="number" min="0" name="pointRank" required />
+                </div>
+            </div>
+        </div>    
+           
+        <div class="form__add--button">
+            <button type="submit" class="btn__save">Lưu</button>
+            <button class="btn__cancel">Hủy</button>
+        </div>
+    </form>
+</div>
+
+<script src="/scripts/admin/openModal.js"></script>

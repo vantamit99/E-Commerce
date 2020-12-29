@@ -1,0 +1,106 @@
+.searchPhone {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 200px);
+    z-index: 600;
+
+    visibility: hidden;
+    opacity: 0;
+    transition: .5s;
+    &.active {
+        transform: translate(-50%, -50%);
+        visibility: visible;
+        opacity: 1;        
+        transition: .5s;
+    }
+
+    &__home {
+        position: relative;
+        max-width: 320px;
+        padding: 40px 60px;
+        background-color: #ffffff;
+        text-align: center;        
+
+        .closeModal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            i {
+                color: #c2c2bd;
+            }
+        }       
+        .err {
+            font-size: 14px;
+            color: #f10f0f;
+        }
+        .title {
+            display: flex;
+            i {
+                color:#1fc3f3;
+            }
+            span {
+                font-size: 24px;
+                font-weight: 700;
+                color: #223e7d;
+            }
+        }
+        .inputPhone {
+            position: relative;
+            margin: 16px 0 10px 0;
+            input {
+                box-sizing: border-box;
+                padding: 10px 22px;
+                width: 100%;
+                border: 1px solid #989191;
+                border-radius: 4px;
+                outline: none;
+            }
+            i {
+                position: absolute;
+                top: 50%;
+                left: 7px;
+                transform: translateY(-50%);
+                color: #989191;
+            }
+        }
+        .btnLookup {
+            margin-top: 20px;
+            margin-bottom: 0;
+            button {
+                padding: 10px 30px;
+                border: 2px solid #2f86bd;
+                color: #1070ac;
+                font-weight: 600;
+                background-color: #fff;
+                border-radius: 20px;
+
+                &:hover {
+                    background-color: #2f86bd;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+.screenTransparent {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 500;
+
+    background-color: rgba(0,0,0,0.8);
+    visibility: hidden;
+    opacity: 0;
+    transition: all .5s;
+
+    &.active {
+        visibility: visible;
+        opacity: 1;
+        transition: all .5s;
+    }
+}

@@ -1,0 +1,34 @@
+.edit__product {
+    .edit__title {
+        margin-bottom: 10px;
+    }
+    form {
+        box-sizing: border-box;
+        overflow-y: auto;
+        overflow-x: hidden;
+        height: auto;
+        padding: 0;
+    }
+    .form__add--container {
+        width: 100%;
+        & > .form__add--item:first-child {
+            padding-right: 40px;
+            width: 65%;
+        }
+        & > .form__add--item:last-child {
+            width: 35%;
+        }
+    }
+}
+.form__group {
+    select {
+        width: 100%;
+        padding: 10px;
+    }
+    textarea {
+        width: 100%;
+        padding: 7px 10px;
+        box-sizing: border-box;
+        resize: none;
+    }
+}

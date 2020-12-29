@@ -1,0 +1,33 @@
+<section class="section__auth section__login">
+    <div class="container">
+        <div class="auth login">
+            <div class="auth__title">
+                <h1>Đăng Nhập Tài Khoản Của Bạn</h1>
+            </div>
+            <div class="auth__form">
+                <form action="/auth/login" method="POST">
+                    <% if(error.length > 0) { %>
+                        <% error.forEach(err => { %>
+                            <div class="error"><%- err %></div>
+                        <% }) %>
+                    <% } %>
+                    <div>
+                        <label for="email">Email*</label>
+                        <input id="email" type="email" name="email" placeholder="email" required />
+                    </div>
+                    <div>
+                        <label for="password">Mật Khẩu*</label>
+                        <input id="password" type="password" name="password" placeholder="Mật Khẩu" required />
+                    </div>
+                    <div>
+                        <a class="forgotPW" href="#">Forgot Password</a>
+                    </div>
+                    <div>
+                        <button type="submit">Đăng Nhập</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+

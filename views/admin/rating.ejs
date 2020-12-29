@@ -1,0 +1,37 @@
+<section class="section__payment">
+    <div class="payment">
+        <h2 class="title">Danh Sách Lượt Đánh Giá</h2>
+        <div class="payment__table viewDetails">
+            <table>
+                <thead>
+                    <tr>
+                        <td>STT</td>
+                        <td>Tên Khách Hàng</td>
+                        <td>Tên Sản Phẩm</td>
+                        <td>Hình Ảnh</td>
+                        <td>Số Sao</td>
+                        <td>Review</td>
+                        <!-- <td></td> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <% docRating.forEach((val, index) => { %>
+                        <tr>
+                            <td><%- index + 1 %></td>
+                            <td><%- val.cus.user.lastname %></td>
+                            <td style="padding-right: 20px;"><%- val.product.name %></td>
+                            <td>
+                                <img src="/assets/uploads/<%- val.product.image %>" style="width: 60px; height: 60px; object-fit: cover;" />
+                            </td>
+                            <td><%- val.star %></td>
+                            <td><%- val.review %></td>
+                            <!-- <td class="actions">
+                                <a href="">View Details</a>
+                            </td> -->
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

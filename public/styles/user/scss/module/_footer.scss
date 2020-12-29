@@ -1,0 +1,28 @@
+.footer {
+    background-color: #f9d836;
+    &__home {
+        padding: 30px 0;
+        display: flex;
+        justify-content: space-between;
+    }
+    .item h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    &__about {
+        width: 29%;
+        & div:nth-child(2) {
+            margin-bottom: 10px;
+        }
+    }
+    ol li {
+        margin: 8px 0;
+        a {
+            color: #000000;
+        }
+        &:hover a {
+            color: #fa2601;
+        }
+    }
+}
+

@@ -1,0 +1,61 @@
+<section class="section__dashboard">
+    <div class="dashboard">
+        <h2 class="title">Thống Kê</h2>
+        <div class="dashboard__list">
+            <div class="dashboard__item">
+                <div class="dashboard__item--box">
+                    <h2><%- countProduct %></h2>
+                    <div>Tổng số lượng giày</div>
+                    <div class="more">
+                        <a href="/dashboard/product">View Details...</a>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard__item">
+                <div class="dashboard__item--box">
+                    <h2><%- countAllOrder %></h2>
+                    <div>Tổng tất cả số lượng đơn hàng</div>
+                    <!-- <div class="more">
+                        <a href="/dashboard/product">View Details...</a>
+                    </div> -->
+                </div>
+            </div>
+            <div class="dashboard__item">
+                <div class="dashboard__item--box">
+                    <h2><%- countOrderCancel %></h2>
+                    <div>Tổng số lượng đơn hàng hủy</div>
+                    <div class="more">
+                        <a href="/dashboard/payment/cancel">View Details...</a>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard__item">
+                <div class="dashboard__item--box">
+                    <h2><%- countPaymentDelivery %></h2>
+                    <div>Tổng số lượng thanh toán khi nhận hàng</div>
+                    <div class="more">
+                        <a href="/dashboard/payment/delivery">View Details...</a>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard__item">
+                <div class="dashboard__item--box">
+                    <h2><%- countPaymentPaypal %></h2>
+                    <div>Tổng số lượng thanh toán paypal</div>
+                    <div class="more">
+                        <a href="/dashboard/payment/paypal">View Details...</a>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard__item">
+                <div class="dashboard__item--box">
+                    <h2><%- countAllRating %></h2>
+                    <div>Tổng số lượt đánh giá</div>
+                    <div class="more">
+                        <a href="/dashboard/rating">View Details...</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,395 @@
+<main>
+    <section class="section__productDetails">
+        <div class="container">
+            <div class="productDetails">
+                <div class="productDetails__list">
+                    <div class="productDetails__item">
+                        <div>
+                            <% if(infoPro.quantity == 0) { %>
+                                <img class="image__soldout" src="/assets/images/soldout.png" />
+                            <% } %>
+                            <img class="image__representPro" src="/assets/uploads/<%- infoPro.image %>" />
+                        </div>
+                        <div>
+                            <div class="owl-carousel owl-theme owl-loaded">
+                                <div class="owl-stage-outer">
+                                    <div class="owl-stage">
+                                        <% infoPro.imageSub.map(val => { %>
+                                            <div class="owl-item">
+                                                <img class="list__imgSub" src="/assets/uploads/<%- val %>" style="cursor: pointer;" />
+                                            </div>
+                                        <% }) %>                                               
+                                    </div>
+                                </div>                                       
+                            </div>
+                        </div>
+                    </div>
+                    <div class="productDetails__item">
+                        <h1 class="title"><%- infoPro.name %></h1>
+                        <div class="priceNew">
+                            <span>₫</span>
+                            <% priceNew = infoPro.price - infoPro.price*infoPro.discount/100 %>
+                            <span class="price__new"><%- String(priceNew).replace(/(\d{3})$/g, ',000') %></span>
+                        </div>
+                        <div class="price">
+                            <span>  
+                                <span>₫</span>
+                                <span class="price__old"><%- String(infoPro.price).replace(/(\d{3})$/g, ',000') %></span>
+                            </span>
+                            <span class="discount"><%- infoPro.discount %>%</span>
+                        </div>
+                        <div>
+                            <form method="GET" action="/payment/now">
+                                <div class="color">
+                                    <div class="title">Màu Sắc:</div>
+                                    <div>                                   
+                                        <% infoPro.color.map((val, index) => { %>
+                                            <% if(index === 0) { %>
+                                                <span>
+                                                    <input class="color__value" checked id="<%- val.image %>" type="radio" value="<%- val.image %>" name="color" />
+                                                    <label for="<%- val.image %>">
+                                                        <img src="/assets/uploads/<%- val.image %>" />
+                                                        <i class="fa fa-check"></i>
+                                                    </label>
+                                                </span>
+                                            <% } else { %>
+                                                <span>
+                                                    <input class="color__value" id="<%- val.image %>" type="radio" value="<%- val.image %>" name="color" />
+                                                    <label for="<%- val.image %>">
+                                                        <img src="/assets/uploads/<%- val.image %>" />
+                                                        <i class="fa fa-check"></i>
+                                                    </label>
+                                                </span>
+                                            <% } %>
+                                        <% }) %>     
+                                    </div>
+                                </div>
+                                <div class="size">
+                                    <div class="title">Kích Thước:</div>
+                                    <div>
+                                        <% infoPro.size.map((val, index) => { %>
+                                            <% if(index === 0) { %>
+                                                <% if(infoPro.quantity == 0) { %>
+                                                    <span>
+                                                        <input disabled class="size__value" checked id="size<%- val %>" type="radio" value="<%- val %>" name="size" />
+                                                        <label for="size<%- val %>"><%- val %></label>
+                                                    </span>
+                                                <% } else { %>
+                                                    <span>
+                                                        <input class="size__value" checked id="size<%- val %>" type="radio" value="<%- val %>" name="size" />
+                                                        <label for="size<%- val %>"><%- val %></label>
+                                                    </span>
+                                                <% } %>
+                                            <% } else { %>
+                                                <% if(infoPro.quantity == 0) { %>
+                                                    <span>
+                                                        <input disabled class="size__value" id="size<%- val %>" type="radio" value="<%- val %>" name="size" />
+                                                        <label for="size<%- val %>"><%- val %></label>
+                                                    </span>
+                                                <% } else { %>
+                                                    <span>
+                                                        <input class="size__value" id="size<%- val %>" type="radio" value="<%- val %>" name="size" />
+                                                        <label for="size<%- val %>"><%- val %></label>
+                                                    </span>
+                                                <% } %>
+                                            <% } %>                                        
+                                        <% }) %>
+                                    </div>
+                                </div>
+                                <div class="quantity">
+                                    <div class="title">Số Lượng</div>
+                                    <div>
+                                        <% if(infoPro.quantity == 0) { %>
+                                            <button type="button" class="decrease" disabled>-</button>
+                                            <input class="quantityPro" disabled type="text" min="1" max="<%- infoPro.quantity %>" value="1" name="quantityPro" />
+                                            <button type="button" class="increase" disabled>+</button>
+                                        <% } else { %>
+                                            <button type="button" class="decrease">-</button>
+                                            <input class="quantityPro" type="text" min="1" max="<%- infoPro.quantity %>" value="1" name="quantityPro" />
+                                            <button type="button" class="increase">+</button>
+                                        <% } %>
+                                        <small class="quantity__error"></small>
+                                    </div>
+                                </div>
+                                <input type="hidden" value="<%- infoPro._id %>" name="idPro" />
+                                <div class="actions">
+                                    <% if(infoPro.quantity == 0) { %>
+                                        <button type="submit" class="buyNow disabled buyNowAjax" getid="<%- infoPro._id %>" disabled>Mua Ngay</button>
+                                        <button type="button" class="addCart disabled addCartAjax" getid="<%- infoPro._id %>" disabled>Thêm Vào Giỏ Hàng</button>
+                                    <% } else { %>
+                                        <button type="submit" class="buyNow buyNowAjax" getid="<%- infoPro._id %>">Mua Ngay</button>
+                                        <button type="button" class="addCart addCartAjax" getid="<%- infoPro._id %>">Thêm Vào Giỏ Hàng</button>
+                                    <% } %>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="productDetails__item">
+                        <div>
+                            <div class="title">Lựa Chọn Vận Chuyển</div>
+                            <ol>
+                                <li>
+                                    <i class="fa fa-ambulance"></i>
+                                    <span>Vận chuyển tiêu chuẩn: 1-3 ngày 30,000đ</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-money-bill-alt"></i>
+                                    <span>Thanh toán khi nhận hàng</span>
+                                </li>
+                            </ol>
+                        </div>
+                        <div>
+                            <div class="title">Đổi Trả & Bảo Hành</div>
+                            <ol>
+                                <li>
+                                    <i class="fa fa-retweet"></i>
+                                    <span>7 ngày đổi trả</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-shield-alt"></i>
+                                    <span>Có bảo hành 1 tháng</span>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rating">
+                <h2 class="title">Đánh Giá Và Reviews</h2>
+                <div class="rating__item">
+                    <div class="rating__total">
+                        <div class="average">
+                            <span><%- resultAverageStar %></span><span>/5</span>
+                        </div>
+                        <div class="star">
+                            <div class="star__default">
+                                <span>
+                                    <i class="far fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="far fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="far fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="far fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="far fa-star"></i>
+                                </span>
+                            </div>
+                            <div class="star__current" style="width: <%- perTotalStar %>%;">
+                                <span>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                            </div>
+                        </div>       
+                        <div><%- numberRating %> đánh giá</div>                
+                    </div>
+                    <div class="rating__listStar">
+                        <div class="listStar__item">
+                            <div class="star star__five">
+                                <span>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                            </div>
+                            <div class="process">
+                                <div class="process__active" style="width: <%- perStarFive %>%"></div>
+                            </div>
+                            <div class="quantity"><%- starFive %></div>
+                        </div>
+                        <div class="listStar__item">
+                            <div class="star star__four">
+                                <span>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="far fa-star"></i>
+                                </span>
+                            </div>
+                            <div class="process">
+                                <div class="process__active" style="width: <%- perStarFour %>%"></div>
+                            </div>
+                            <div class="quantity"><%- starFour %></div>
+                        </div>
+                        <div class="listStar__item">
+                            <div class="star star__three">
+                                <span>
+                                    <i class="fa fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="fa fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="fa fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="far fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="far fa-star"></i>
+                                </span>
+                            </div>
+                            <div class="process">
+                                <div class="process__active" style="width: <%- perStarThree %>%"></div>
+                            </div>
+                            <div class="quantity"><%- starThree %></div>
+                        </div>
+                        <div class="listStar__item">
+                            <div class="star star__two">
+                                <span>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="far fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="far fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="far fa-star"></i>
+                                </span>
+                            </div>
+                            <div class="process">
+                                <div class="process__active" style="width: <%- perStarTwo %>%"></div>
+                            </div>
+                            <div class="quantity"><%- starTwo %></div>
+                        </div>
+                        <div class="listStar__item">
+                            <div class="star star__one">
+                                <span>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="far fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="far fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="far fa-star"></i>
+                                </span>
+                                <span>
+                                    <i class="far fa-star"></i>
+                                </span>
+                            </div>
+                            <div class="process">
+                                <div class="process__active" style="width: <%- perStarOne %>%"></div>
+                            </div>
+                            <div class="quantity"><%- starOne %></div>
+                        </div>
+                    </div>
+                </div>
+                <h2 class="title" style="margin-bottom:15px">Sản Phẩm Và Reviews</h2>
+                <% listReview.forEach(val => { %>
+                    <div class="cus__rating">
+                        <div class="star">
+                            <% for(var i = 1; i <= 5; i++) { %>
+                                <% if(i <= val.star) { %>
+                                    <span><i class="fas fa-star"></i></span>
+                                <% } else { %>
+                                    <span><i class="far fa-star"></i></span>
+                                <% } %>
+                            <% } %>
+                        </div>
+                        <div class="name">
+                            <span>by <%- val.fullname %></span>
+                            <span>
+                                <i class="fa fa-check-circle"></i>
+                                <span>Chứng nhận mua hàng</span>
+                            </span>
+                        </div>
+                        <div class="idea">
+                            <span><%- val.review %></span>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+            <div class="comment">
+                <h2 class="title">Đặt Câu Hỏi Về Sản Phẩm</h2>
+                <div class="question">
+                    <form method="POST" action="/comment">
+                        <textarea name="question" placeholder="Đặt câu hỏi của bạn tại đây"></textarea>
+                        <input type="hidden" value="<%- infoPro._id %>" name="idPro" />
+                        <button type="submit">Gửi Câu Hỏi</button>
+                    </form>
+                </div>
+                
+                <div class="list__question">
+                    <div class="list__question--title">Danh Sách Câu Hỏi</div>
+                    <% listQuestion.forEach(item => { %>
+                        <div class="question__item">
+                            <div class="question">
+                                <% if(item.cus) { %>
+                                    <span>by <%- item.cus.user.lastname %>:</span>
+                                <% } else { %>
+                                    <span>by Anonymous:</span>
+                                <% } %>
+                                <span><%- item.comment %></span>
+                            </div>
+                            <div class="answer">
+                                <span>by shop:</span>
+                                <% if(docUser) { %>
+                                    <% if(docUser.email == "admin@gmail.com") { %>
+                                        <span>
+                                            <form action="/comment/rep" method="POST">
+                                                <input type="text" value="<%- item.rep %>" name="updateRepQ" />
+                                                <input type="hidden" value="<%- item._id %>" name="idComment" />
+                                                <input type="hidden" value="<%- item.product %>" name="idPro" />
+                                                <button>Update</button>
+                                            </form>
+                                        </span>
+                                    <% } else { %>
+                                        <span><%- item.rep %></span>
+                                    <% } %>
+                                <% } else { %>
+                                    <span><%- item.rep %></span>
+                                <% } %>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script type="module" src="/scripts/user/productDetails.js"></script>
+

@@ -1,0 +1,58 @@
+/* === contact social === */
+.contact__social li {
+    position: fixed;
+    top: 45%;
+    right: 20px;  
+
+    width: 40px;
+    height: 40px;
+
+    background-color: #1df7ed;
+    border-radius: 50%;
+    
+    z-index: 19;    
+}
+.contact__social a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.contact__social i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-size: 18px;
+    color: #0551af;    
+
+    transition: all .5s;
+}
+/* === button contact social === */
+.contact__social--open {
+    position: fixed;
+    top: 45%;
+    right: 20px;       
+
+    width: 40px;
+    height: 40px;
+
+    background-color: #1bf15d;
+    color: #37147b;
+    font-size: 29px;
+
+    border-radius: 50%;
+    border:  none;
+    outline: none;
+    cursor: pointer;
+
+    z-index: 20;
+    transition: all .8s;
+}
+.contact__social--open:hover {
+    transform: rotate(720deg);
+    transition: all .8s;
+}
+.contact__social li:hover {
+    background-color: #e9d6e9;
+}

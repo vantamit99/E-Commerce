@@ -1,0 +1,15 @@
+<main>
+    <section class="section__promotion">
+        <div class="container">
+            <h1 style="margin: 40px 0;">CÁC MỨC ƯU ĐÃI DÀNH CHO CÁC THÀNH VIÊN</h1>
+            <ol>
+                <% listSpecial.map((val, index) => { %>
+                    <li style="margin: 20px 0">
+                        <h3 style="margin-bottom: 5px;">Hạng <%- val.nameRank %> - Tiêu ít nhất <u><%- val.pointRank %></u> VND</h3>
+                        <div>Khi thanh toán bất kì đơn hàng nào sẽ được freeship và giảm <%- index*2 %>% số tiền</div>
+                    </li>
+                <% }) %>
+            </ol>
+        </div>
+    </section>
+</main>

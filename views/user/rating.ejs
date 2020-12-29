@@ -1,0 +1,70 @@
+<main>
+    <section class="section__rating">
+        <div class="container">
+            <div class="rating">
+                <div class="rating__home">
+                    <div class="title">Đánh giá và Ý kiến về sản phẩm:</div>
+                    <div class="rating__details">
+                        <div class="rating__info info__image">
+                            <a href="/product/<%- docProduct.product._id %>">
+                                <img src="/assets/uploads/<%- docProduct.product.image %>" />
+                            </a>
+                        </div>
+                        <div class="rating__info info__form">
+                            <div class="nameProduct"><%- docProduct.product.name %></div>
+                            <div class="sizeProduct"><%- docProduct.color %> & size: <%- docProduct.size %></div>
+                            <div class="rating__form">
+                                <form action="/rating/save" method="POST">
+                                    <div class="star form__group">
+                                        <input id="star5" type="radio" value="5" name="star" />
+                                        <label for="star5" title="Rất đẹp">
+                                            <i class="fa fa-star"></i>
+                                        </label>
+                                        <input id="star4" type="radio" value="4" name="star" />
+                                        <label for="star4" title="Đẹp">
+                                            <i class="fa fa-star"></i>
+                                        </label>
+                                        <input id="star3" type="radio" value="3" name="star" />
+                                        <label for="star3" title="Tạm được">
+                                            <i class="fa fa-star"></i>
+                                        </label>    
+                                        <input id="star2" type="radio" value="2" name="star" />
+                                        <label for="star2" title="Xấu">
+                                            <i class="fa fa-star"></i>
+                                        </label>
+                                        <input id="star1" type="radio" value="1" name="star" />
+                                        <label for="star1" title="Quá tệ">
+                                            <i class="fa fa-star"></i>
+                                        </label>
+                                    </div>
+                                    <div class="review form__group">
+                                        <div class="review__title">Ý kiến cá nhân</div>
+                                        <div>
+                                            <textarea name="review" placeholder="Bạn nghĩ gì về sản phẩm này?"></textarea>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" value="<%- docProduct.product._id %>" name="idPro" >
+                                    <input type="hidden" value="<%- idOrderPayment %>" name="idOrderPayment" />
+                                    <input type="hidden" value="<%- idListProduct %>" name="idListProduct" />
+                                    <div class="btn__rating">
+                                        <button type="submit" disabled>Gửi Đánh Giá</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+    var rating = document.querySelectorAll('.star input');
+    var button = document.querySelector('.btn__rating button');
+    for(let i = 0; i < rating.length; i++) {
+        rating[i].addEventListener('change', ()=> {
+            button.disabled = false;
+        }) 
+    }
+</script>

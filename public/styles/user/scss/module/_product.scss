@@ -1,0 +1,138 @@
+.section__product {
+    padding: 40px 0;
+}
+
+// === product === //
+.product {
+    &__title {
+        margin-bottom: 15px;
+    }
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    &__item {
+        position: relative;
+        width: calc(100% / 6 - 12px + 2px);
+        margin-right: 12px;
+        margin-bottom: 15px;
+        &:nth-child(6n) {
+            margin-right: 0;
+        }
+    }
+
+    .product__soldout {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 5;
+
+        width: 70%;
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    }
+
+    & .card {
+        background-color: #ffffff;
+        border: 1px solid rgba(0,0,0,0.2);
+        &:hover {
+            box-shadow: 0 2px 8px 0 rgba(0,0,0,0.4);
+        }
+    }
+    .product__image {
+        height: 180px;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    .product__details {
+        padding: 20px 10px 15px 10px;
+        & > div {
+            margin-bottom: 10px;
+        }
+        &--title {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+
+            height: 38px;
+            line-height: 20px;
+
+            overflow: hidden;
+            white-space: pre-wrap;
+            text-overflow: ellipsis;
+
+            color: #000000;
+            font-size: 15px;
+        }
+        &--priceFirst {
+            span {
+                font-weight: bold;
+                font-size: 18px;
+                color: $colorOrange;
+            }
+        }
+        &--priceSecond {
+            span {
+                color: #8e8a8a;
+            }
+            & span:first-child {
+                span {
+                    text-decoration: line-through;
+                }
+            }
+            .price__old,
+            .discount {
+                font-size: 13px;
+            }
+        }
+        &--rate {
+            @include flex(space-between, initial);
+            & .rate {
+                &__count {
+                    color: #8e8a8a;
+                    margin-left: 10px;
+                }
+            }
+            & .province {
+                small {
+                    color: #8e8a8a;
+                }
+            }
+        }
+    }
+}
+.product__details--rate {   
+    .rate {
+        display: flex;
+    }
+    .rate__star {
+        
+        .star {
+            position: relative;
+            overflow: hidden;
+            i {
+                font-size: 16px;
+            }
+            .fa-star {
+                color: #f5d107;
+            }
+            .fa-star-o {
+                color: #c5c5c4;
+            }
+            &__current {
+                position: absolute;
+                top: 0;
+                white-space: nowrap;
+                overflow: hidden;
+                width: 0%;
+            }
+        }
+    }
+}

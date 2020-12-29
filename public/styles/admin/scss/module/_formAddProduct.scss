@@ -1,0 +1,42 @@
+.product__form--add {
+    form {
+        box-sizing: border-box;
+        height: 90vh;
+        overflow: auto;
+        padding: 20px 70px 30px 70px;
+    }
+
+    .form__add--container {
+        display: flex;
+        width: 900px;
+        & > .form__add--item:first-child {
+            padding-right: 20px;
+            width: 55%;
+        }
+        & > .form__add--item:last-child {
+            width: 45%;
+        }
+    }
+    .label__upload--image {
+        cursor: pointer;
+        img {
+            width: 260px;
+            height: 230px;
+            object-fit: cover;
+        }
+    }
+    #file {
+        display: none;
+    }
+    .size {
+        & > div {
+            margin-bottom: 5px;
+        }
+        label {
+            display: inline;
+        }
+        input[type=checkbox] {
+            width: auto;
+        }
+    }
+}

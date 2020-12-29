@@ -1,0 +1,51 @@
+<section class="section__payment">
+    <div class="payment">
+        <h2 class="title"><%- titleBlock %></h2>
+        <div class="payment__table viewDetails">
+            <table>
+                <thead>
+                    <tr>
+                        <td>STT</td>
+                        <td>Tên Khách Hàng</td>
+                        <td>Địa Chỉ Nhận</td>
+                        <td>Số Điện Thoại</td>
+                        <td>Trạng Thái</td>
+                        <td>Tổng Tiền</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% doc.forEach((val, index) => { %>
+                        <tr>
+                            <td><%- index + 1 %></td>
+                            <td><%- val.peopleRecive %></td>
+                            <td><%- val.addressRecive %></td>
+                            <td><%- val.phone %></td>
+                            <td>
+                                <% if(val.status == '0') { %>
+                                    <span>Đã Hủy</span>
+                                <% } %>
+                                <% if(val.status == '1') { %>
+                                    <span>Chưa Xử Lý</span>
+                                <% } %>
+                                <% if(val.status == '2') { %>
+                                    <span>Đã Đóng Gói</span>
+                                <% } %>
+                                <% if(val.status == '3') { %>
+                                    <span>Đang Vận Chuyển</span>
+                                <% } %>
+                                <% if(val.status == '4') { %>
+                                    <span>Đã Giao</span>
+                                <% } %>
+                            </td>
+                            <td><%- String(val.totalAllMoney).replace(/\d{3}$/g, ',000') %></td>
+                            <td class="actions">
+                                <a href="/dashboard/payment/details/<%- val._id %>">View Details</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

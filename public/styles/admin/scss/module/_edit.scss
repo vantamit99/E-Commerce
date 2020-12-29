@@ -1,0 +1,24 @@
+.edit {
+    box-sizing: border-box;
+    padding: 20px;
+
+    height: 585px;
+    background-color: #ffffff;
+    overflow: auto;
+}
+.edit__title {
+    margin-bottom: 20px;
+}
+.form__group {
+    margin: 10px 0;
+    & label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    & input {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 16px;
+    }
+}

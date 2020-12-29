@@ -1,0 +1,71 @@
+.form__add {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    
+    width: 100%;
+    height: 100vh;
+
+    background-color: rgba(0,0,0,0.5);
+    
+    display: none;
+    & form {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        padding: 40px 70px;
+        background-color: #ffffff;
+       
+        & label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        & input, textarea, select {
+            width: 100%;
+            border: 1px solid #000000;
+            border-radius: 4px;
+            padding: 7px 10px;
+            box-sizing: border-box;
+        }
+        & textarea {
+            resize: none;
+        }
+       
+    }
+}
+.form__add--container {
+    width: 400px;
+}
+.form__add--item {
+    & > div  {
+        margin: 10px 0;
+    }
+}
+.form__add--button {
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    & button {
+        padding: 15px 30px;
+
+        font-size: 18px;
+        font-weight: 500;
+        
+        outline: none;
+        border: 1px solid black;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    .btn__save {
+        background-color: #38b638;
+        & a {
+            color: #ffffff;
+        }
+    }
+    .btn__cancel {
+        background-color: #f1ecec;
+    }
+}

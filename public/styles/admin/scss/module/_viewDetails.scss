@@ -1,0 +1,63 @@
+.viewDetails {
+    margin-top: 30px;
+    height: 400px;
+    overflow: auto;
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    thead, 
+    tbody tr {
+        border-bottom: 1px solid #000000;
+    }
+    thead tr {
+        height: 45px;
+    }
+    thead td {
+        font-weight: 700;
+    }
+    tbody tr {
+        height: 40px;
+        &:hover {
+            background-color: #d8dcdb !important;
+            cursor: pointer;
+        }
+        & > td:first-child {
+            box-sizing: border-box;
+            padding-right: 20px;
+        }
+    }
+    tbody tr:nth-child(even) {
+        background-color: #f1f3f3;
+    }
+    tbody td img {
+        display: block;
+        box-sizing: border-box;
+        padding: 10px;
+
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+    }
+    .actions {
+        button {
+            background: none;
+            border: none;
+            outline: none;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        i {
+            font-size: 18px;
+        }
+        #details i {
+            color: #0a9a86;
+        }
+        #edit i {
+            color: #d60808;
+        }
+        #delete i {
+            color: #000000;
+        }
+    }
+}

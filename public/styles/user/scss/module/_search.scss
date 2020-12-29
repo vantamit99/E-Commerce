@@ -1,0 +1,6 @@
+.search__notFound {
+    h1 {
+        font-size: 30px;
+        @include flex(center, center);
+    }
+}

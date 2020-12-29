@@ -1,0 +1,81 @@
+<h1 class="product__title">Sản Phẩm Dành Cho Bạn</h1>
+<div class="product__list">
+    <% listPro.forEach(val => { %>
+        <% 
+            var sum = 0;
+            if(val.rate.length > 0) {
+                sum = val.rate.map(val => val.star).reduce((total, current)=> {
+                    return total + current;
+                })
+            }
+            var averageStar = sum / val.rate.length / 5 * 100;
+        %>
+        <div class="product__item">
+            <a href="/product/<%- val._id %>">
+                <div class="card">
+                    <div class="product__image">
+                        <img src="/assets/uploads/<%- val.image %>" />
+                    </div>
+                    <div class="product__details">
+                        <div class="product__details--title"><%- val.name %></div>
+                        <div class="product__details--priceFirst">
+                            <span>₫</span>
+                            <% priceNew = val.price - val.price*val.discount/100 %>
+                            <span class="price__new"><%- String(priceNew).replace(/(\d{3})$/g, ',000') %></span>
+                        </div>
+                        <div class="product__details--priceSecond">
+                            <span>  
+                                <span>₫</span>
+                                <span class="price__old"><%- String(val.price).replace(/(\d{3})$/g, ',000') %></span>
+                            </span>
+                            <span class="discount">-<%- val.discount %>%</span>
+                        </div>
+                        <div class="product__details--rate">
+                            <div class="rate">
+                                <span class="rate__star">
+                                    <div class="star">
+                                        <div class="star__default">
+                                            <span>
+                                                <i class="far fa-star"></i>
+                                            </span>
+                                            <span>
+                                                <i class="far fa-star"></i>
+                                            </span>
+                                            <span>
+                                                <i class="far fa-star"></i>
+                                            </span>
+                                            <span>
+                                                <i class="far fa-star"></i>
+                                            </span>
+                                            <span>
+                                                <i class="far fa-star"></i>
+                                            </span>
+                                        </div>
+                                        <div class="star__current" style="width: <%- averageStar %>%">
+                                            <span>
+                                                <i class="fas fa-star"></i>
+                                            </span>
+                                            <span>
+                                                <i class="fas fa-star"></i>
+                                            </span>
+                                            <span>
+                                                <i class="fas fa-star"></i>
+                                            </span>
+                                            <span>
+                                                <i class="fas fa-star"></i>
+                                            </span>
+                                            <span>
+                                                <i class="fas fa-star"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span class="rate__count">(<%- val.rate.length %>)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    <% }) %>
+</div>

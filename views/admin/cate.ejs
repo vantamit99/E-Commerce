@@ -1,0 +1,50 @@
+<div class="cate">
+    <div class="cate__row">
+        <h2>Danh Sách Các Loại Giày</h2>
+        <button class="open__modal--add">+ Thêm Loại</button>
+    </div>
+    <div class="viewDetails">
+        <table>
+            <thead>
+                <tr>
+                    <td>Tên loại giày</td>
+                    <td>Hành động</td>
+                </tr>
+            </thead>
+            <tbody>
+                <% docCate.forEach(val => { %>
+                    <tr>
+                        <td><%- val.name %></td>
+                        <td class="actions">
+                            <button id="edit">
+                                <a href="/dashboard/cate/edit/<%- val._id %>"><i class="fas fa-pencil-alt"></i></a>
+                            </button>
+                            <button id="delete">
+                                <a href="/dashboard/cate/delete/<%- val._id %>"><i class="fas fa-trash-alt"></i></a>
+                            </button>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="form__add">
+    <form action="/dashboard/cate/create" method="POST">
+        <div class="form__add--container">
+            <div class="form__add--item">
+                <div>
+                    <label for="cateProduct">Tên Loại Giày:</label>
+                    <input id="cateProduct" type="text" name="cateProduct" required />
+                </div>
+            </div>
+        </div>    
+           
+        <div class="form__add--button">
+            <button type="submit" class="btn__save">Lưu</button>
+            <button class="btn__cancel">Hủy</button>
+        </div>
+    </form>
+</div>
+
+<script src="/scripts/admin/openModal.js"></script>

@@ -1,0 +1,97 @@
+<!-- === contact social === -->
+<div class="effect__social">
+    <button class="contact__social--open">+</button>
+    <ol class="contact__social">        
+        <li><a href="https://github.com/vantamit99"><i class="fab fa-github"></i></a></li>
+        <li><a href="#"><i class="fab fa-skype"></i></a></li>
+        <li><a class="linkOPenModalSearchPhone" href="javascript:void(0)"><i class="fa fa-search-dollar"></i></a></li>
+        <li class="contact__social--chat"><a href="#"><i class="fa fa-comments"></i></a></li>
+        <li><a href="#backToTop"><i class="fa fa-home"></i></a></li>
+    </ol>
+</div>
+<div class="searchPhone">
+    <div class="searchPhone__home">
+        <button class="closeModal"><i class="fa fa-times-circle fa-2x"></i></button>
+        <div class="title">
+            <div><i class="fa fa-info-circle fa-3x"></i></div>
+            <div>
+                <span>Tra Cứu Đơn Hàng</span>
+            </div>
+        </div>
+        <div class="inputPhone">
+            <input id="phone" type="text" placeholder="Nhập số điện thoại" />
+            <i class="fa fa-mobile-alt"></i>
+        </div>
+        <div class="err"></div>
+        <div class="btnLookup">
+            <button class="lookup">Tra Cứu</button>
+        </div>
+    </div>
+</div>
+<div class="screenTransparent"></div>
+
+<script>
+    const searchPhone = function() {
+        var linkOpen = document.querySelector('.linkOPenModalSearchPhone');
+        var btnClose = document.querySelector('.closeModal');
+        var btnLookup = document.querySelector('.lookup');
+        var modal = document.querySelector('.searchPhone');
+        var screen = document.querySelector('.screenTransparent');
+        var phone = document.getElementById('phone');
+        var err = document.querySelector('.err');
+        
+        linkOpen.addEventListener('click', openModal);
+        btnClose.addEventListener('click', closeModal);
+        btnLookup.addEventListener('click', checkPhone);
+
+
+        function openModal() {
+            modal.classList.add('active'); 
+            screen.classList.add('active');            
+            
+            window.addEventListener('click', checkIsClassScreen);
+        }
+        function closeModal() {
+            modal.classList.remove('active'); 
+            screen.classList.remove('active');
+
+            window.removeEventListener('click', checkIsClassScreen);
+        }
+        function checkIsClassScreen(e) {                 
+            if(e.target.classList.contains('screenTransparent')) return closeModal();
+        }
+        function checkPhone() {
+            let valPhone = phone.value;
+            if(/[a-zA-Z]/.test(valPhone)) {
+                console.log('cc')
+                err.innerHTML = "SĐT phải là số";
+                return -1;
+            }
+            if(valPhone == "") {                
+                err.innerHTML = "SĐT không được rỗng";
+                return -1;
+            }
+            if(valPhone.length < 10 || valPhone.length > 11) {
+                err.innerHTML = "SĐT phải từ 10 - 11 số";
+                return -1;
+            }
+            sendPhoneAjax('/lookupPhone/checkPhone', valPhone);
+        }
+        function sendPhoneAjax(url, phone) {
+            let xhttp = new XMLHttpRequest();
+            xhttp.open('GET', `${url}?phone=${phone}`, true);
+            xhttp.onreadystatechange = function() {
+                if(this.status == 200 && this.readyState == 4) {
+                    const data = JSON.parse(this.responseText);
+                    if(!data.existPhone) {                        
+                        err.innerHTML = data.msg;
+                        return -1;
+                    } else {
+                        return window.location.href = data.url;
+                    }                               
+                }
+            }            
+            xhttp.send();
+        }
+    }();
+</script>

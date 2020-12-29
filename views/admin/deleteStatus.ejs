@@ -1,0 +1,17 @@
+<div class="delete">
+    <h2 class="delete__title">Delete</h2>
+    <form class="form" method="POST" action="/dashboard/status/delete/<%- docStatus._id %>">
+        <div class="form__group">
+            <label for="deleteIdStatus">Mã Trạng Thái</label>
+            <input id="deleteIdStatus" type="text" name="deleteIdStatus" value="<%- docStatus.idStatus %>" disabled />
+        </div>
+        <div class="form__group">
+            <label for="deleteNameStatus">Tên Trạng Thái</label>
+            <input id="deleteNameStatus" type="text" name="deleteNameStatus" value="<%- docStatus.nameStatus %>" disabled />
+        </div>
+        <div class="form__group form__actions">
+            <button class="btn__save" type="submit">Lưu</button>
+            <button class="btn__cancel" type="button"><a href="/dashboard/status">Hủy</a></button>
+        </div>
+    </form>
+</div>

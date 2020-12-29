@@ -1,0 +1,99 @@
+.section__rating {
+
+    .rating {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        margin: 20px 0;
+        background-color: transparent;
+        &__home {
+            box-sizing: border-box;
+            padding: 20px;
+
+            width: 80%;
+            height: 450px;
+            background-color: #ffffff;
+            box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
+        }
+        &__details {
+            display: flex;
+        }
+        .info__image {
+            margin-right: 20px;
+            img {
+                width: 80px;
+                height: 80px;
+                object-fit: cover;
+            }
+        }
+        .info__form {
+            width: 100%;
+            overflow: hidden;
+            .nameProduct {
+                width: 70%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            .sizeProduct {
+                font-size: 14px;
+                color: #686868;
+            }
+        }
+        &__form {
+            form {
+                width: 100%;
+            }
+            textarea {
+                resize: none;
+                width: 98%;
+                height: 100px;
+
+                border: 1px solid #5a5959;
+                outline: none;
+                box-sizing: border-box;
+                padding: 10px 20px;
+            }
+        }
+        .star {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            input {
+                display: none;
+            }
+            label {
+                margin-right: 5px;
+                cursor: pointer;
+                i {
+                    font-size: 18px;
+                    color: #dfdbdb;
+                }
+            }
+            input:checked ~ label {
+                & i {
+                    color: #ecdd0b;
+                }
+            }
+        }
+        .review {
+            &__title {
+                margin-bottom: 10px;
+            }
+        }
+        .btn__rating {
+            margin-top: 40px;
+            text-align: center;
+            button {
+                padding: 15px 30px;
+                font-size: 18px;
+                font-weight: 500;
+                background-color: $colorOrange;
+                color: #ffffff;
+                border-radius: 2px;
+                outline: none;
+            }
+        }
+    }
+}

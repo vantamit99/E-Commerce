@@ -1,0 +1,29 @@
+<section class="section__payment">
+    <div class="payment">
+        <h2 class="title">Danh Sách Thông Tin Khách Hàng</h2>
+        <div class="payment__table viewDetails">
+            <table>
+                <thead>
+                    <tr>
+                        <td>STT</td>
+                        <td>Tên Khách Hàng</td>
+                        <td>Email</td>
+                        <td>Số Điện Thoại</td>
+                        <td>Địa Chỉ</td>
+                    </tr>
+                </thead>
+                <% listCus.map((val, index) => { %>
+                    <tbody>
+                        <tr>
+                            <td><%- index + 1 %></td>
+                            <td><%- `${val.user.firstname} ${val.user.lastname}` %></td>
+                            <td style="padding-right: 20px;"><%- val.user.email %></td>
+                            <td><%- val.phone %></td>
+                            <td><%- val.deliveryAddress %></td>
+                        </tr>
+                    </tbody>
+                <% }) %>
+            </table>
+        </div>
+    </div>
+</section>

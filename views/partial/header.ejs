@@ -1,0 +1,220 @@
+<header id="backToTop">
+    <section class="section__topbar">
+        <div class="topbar">
+            <div class="container">
+                <div class="topbar__home">
+                    <div class="topbar__home--left">
+                        <small>Miễn phí giao hàng toàn quốc với đơn hàng 500k</small>
+                    </div>
+                    <div class="topbar__home--right"> 
+                        <div>
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="hotline">
+                            <small>
+                                <a href="tel:0916104500">Hotline: 0916 104 500</a>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section__nav">
+        <div class="container">
+            <div class="menu">
+                <nav class="nav">
+                    <div class="brand">
+                        <h1 class="brand__title">
+                            <a href="/">Group HKT</a>
+                        </h1>
+                    </div>
+                    <ol class="menu__list">
+                        <li class="menu__item">
+                            <a href="/cate/shoesboy">Giày Nam</a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="/cate/shoesgirl">Giày Nữ</a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="/promotion">Ưu Đãi</a>
+                        </li>
+                        <!-- <li class="menu__item">
+                            <a href="#">Lịch Sử Mua Hàng</a>
+                        </li> -->
+                    </ol>
+                    <div class="search">
+                        <form action="/search" method="GET">
+                            <input type="text" name="search" placeholder="Nhập tên hoặc loại giày..." />
+                            <button type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                </nav>
+                <div class="menu__auth">
+                    <ol>
+                        <% if(docUser) { %>
+                            <li class="user__img">
+                                <a href="javascript:void(0)">
+                                    <img src="<%- docUser.cus.image %>" />
+                                    <span><%- docUser.lastname %></span>
+                                </a>
+                                <div class="user__img--dropdown">
+                                    <ol class="list__dropdown">                                            
+                                        <li class="dropdown__item">
+                                            <a href="/profile">Thông Tin Cá Nhân</a>
+                                        </li>
+                                        <li class="dropdown__item">
+                                            <a href="/order/history">Đơn Hàng</a>
+                                        </li>
+                                        <li class="dropdown__item">
+                                            <a href="/rating/history">Lịch Sử Đánh Giá</a>
+                                        </li>
+                                        <li class="dropdown__item">
+                                            <a href="/auth/changePassword">Đổi Mật Khẩu</a>
+                                        </li>
+                                        <li class="dropdown__item">
+                                            <a href="/auth/logout">Đăng Xuất</a>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </li>
+                           
+                        <% } else { %>
+                            <li>
+                                <a href="/auth/register">Đăng Ký</a>
+                            </li>
+                            <li>
+                                <a href="/auth/login">Đăng Nhập</a>
+                            </li>
+                        <% } %>
+                        
+                    </ol>
+                    <div class="menu__cart">
+                        <a href="/cart">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span class="quantity__cart">
+                                <% if(!docUser) { %>
+                                    <%- countCart %>
+                                <% } else { %>
+                                    <%- countCart %>
+                                <% } %>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="mobile__header menu__mobile">
+                    <button class="bars">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</header>
+<aside class="mobile__header sidebar__mobile">
+    <div class="sidebar__mobile--home">
+        <ul class="list__nav">
+            <% if(docUser) { %>
+                <li class="">
+                    <a href="/profile">Thông Tin Cá Nhân</a>
+                </li>
+                <li class="">
+                    <a href="/order/history">Đơn Hàng</a>
+                </li>
+                <li class="">
+                    <a href="/rating/history">Lịch Sử Đánh Giá</a>
+                </li>
+                <li class="">
+                    <a href="/cart">Giỏ Hàng</a>
+                </li>
+                <li class="">
+                    <a href="/cate/shoesboy">Giày Nam</a>
+                </li>
+                <li class="">
+                    <a href="/cate/shoesgirl">Giày Nữ</a>
+                </li>
+                <li class="">
+                    <a href="/promotion">Ưu Đãi</a>
+                </li>
+                <li class="">
+                    <a href="/auth/changePassword">Đổi Mật Khẩu</a>
+                </li>
+                <li class="">
+                    <a href="/auth/logout">Đăng Xuất</a>
+                </li>
+               
+            <% } else { %>
+                <li class="">
+                    <a href="/cate/shoesboy">Giày Nam</a>
+                </li>
+                <li class="">
+                    <a href="/cate/shoesgirl">Giày Nữ</a>
+                </li>
+                <li class="">
+                    <a href="/promotion">Ưu Đãi</a>
+                </li>
+                <li>
+                    <a href="/auth/register">Đăng Ký</a>
+                </li>
+                <li>
+                    <a href="/auth/login">Đăng Nhập</a>
+                </li>
+            <% } %>
+        </ul>
+    </div>
+</aside>
+<div class="screen"></div>
+
+<script>
+    var barsOpen = document.querySelector('.mobile__header .bars');
+    var sidebarMobile = document.querySelector('.sidebar__mobile');
+    var screen = document.querySelector('.screen');
+    var itemNav = document.querySelectorAll('.list__nav li');
+
+    var isClick = false;
+
+    window.addEventListener('click', e => {
+        if(e.target.classList.contains('screen')) {
+            barsOpen.classList.remove('active');
+            sidebarMobile.classList.remove('active');
+            screen.classList.remove('active');
+            itemNav.forEach((item, index) => {
+                setTimeout(()=> {
+                    item.style.transition = "all .5s",
+                    item.style.transform = "translateX(100%)"
+                }, 80*index)
+            })
+            isClick = !isClick;
+        }
+    })
+    barsOpen.addEventListener('click', effectBars);
+   
+    function effectBars(pos) {
+        isClick = !isClick;
+        if(isClick) {
+            barsOpen.classList.add('active');
+            sidebarMobile.classList.add('active');
+            screen.classList.add('active');
+            itemNav.forEach((item, index) => {
+                setTimeout(()=> {
+                    item.style.transition = "all .5s",
+                    item.style.transform = "translateX(0)"
+                }, 80*index)
+            })
+        } else {
+            barsOpen.classList.remove('active');
+            sidebarMobile.classList.remove('active');
+            screen.classList.remove('active');
+            itemNav.forEach((item, index) => {
+                setTimeout(()=> {
+                    item.style.transition = "all .5s",
+                    item.style.transform = "translateX(100%)"
+                }, 80*index)
+            })
+        }  
+    }
+</script>

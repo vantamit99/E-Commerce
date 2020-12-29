@@ -1,0 +1,36 @@
+// === carousel === //
+.carousel {
+    & .owl-theme .owl-nav {
+        margin: 0;
+        & > button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+
+            padding: 20px !important;
+            margin: 0;
+
+            background-color: rgba(0,0,0,0.4);
+
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            & > span {
+                font-size: 30px;
+                color: #ffffff;
+            }
+        }
+        & > .owl-prev {
+            left: 20px;
+        }
+        & > .owl-next {
+            right: 20px;
+        }
+        & > button:hover {
+            background-color: rgba(0,0,0,0.4);
+        }
+    }
+    & .owl-theme .owl-dots {
+        display: none;
+    }
+}

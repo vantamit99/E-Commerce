@@ -1,0 +1,125 @@
+<div class="product">
+    <div class="product__row">
+        <h2>Danh Sách Các Đôi Giày</h2>
+        <button class="open__modal--add">+ Thêm Giày</button>
+    </div>
+    <div>
+        <div class="viewDetails">
+            <table>
+                <thead>
+                    <tr>
+                        <td>Tên giày</td>
+                        <td>Giá</td>
+                        <td>Số Lượng</td>
+                        <td>Giá giảm</td>
+                        <td>Ảnh</td>
+                        <td>Hành động</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% infoPro.forEach(val => { %>
+                        <tr>
+                            <td><%- val.name %></td>
+                            <td><%- val.price %></td>
+                            <td><%- val.quantity %></td>
+                            <td><%- val.discount %>%</td>
+                            <td>
+                                <img src="/assets/uploads/<%- val.image %>" />
+                            </td>
+                            <td class="actions">
+                                <button id="details">
+                                    <a href="/dashboard/product/details/<%- val._id %>"><i class="fa fa-book"></i></a>
+                                </button>
+                                <button id="edit">
+                                    <a href="/dashboard/product/edit/<%- val._id %>"><i class="fas fa-pencil-alt"></i></a>
+                                </button>
+                                <button id="delete">
+                                    <a href="/dashboard/product/delete/<%- val._id %>"><i class="fas fa-trash-alt"></i></a>
+                                </button>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="product__form--add form__add">
+    <form action="/dashboard/product/create" method="POST" enctype="multipart/form-data">
+        <div class="form__add--container">
+            <div class="form__add--item">
+                <div>
+                    <label for="proName">Tên Giày*:</label>
+                    <input id="proName" type="text" name="proName" required />
+                </div>
+                <div>
+                    <label for="proPrice">Giá Giày*:</label>
+                    <input id="proPrice" type="number" min=0 max="100000000" name="proPrice" required />
+                </div>
+                <div>
+                    <label for="proQuantity">Số Lượng*:</label>
+                    <input id="proQuantity" type="number" min=0 name="proQuantity" required />
+                </div>
+                <div>
+                    <label for="proDiscount">Giảm Giá %:</label>
+                    <input id="proDiscount" type="number" min="0" max="100000000" name="proDiscount" />
+                </div>
+                <div>
+                    <label>Loại Giày:</label>
+                    <select name="proCate">
+                        <% cate.forEach(val => { %>
+                            <option selected value="<%- val %>"><%- val %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                <div>
+                    <label for="proDescription">Mô Tả:</label>
+                    <textarea id="proDescription" rows="7" resize="false" name="proDescription"></textarea>
+                </div>
+            </div>
+            <div class="form__add--item">
+                <div>
+                    <label class="label__upload--image" for="file">
+                        <span>Ảnh*:</span>
+                        <div>
+                            <img class="showProImage" src="/assets/images/click-upload.jpeg" />
+                        </div>
+                    </label>
+                    <input class="proImage"id="file" type="file" name="proImage" accept="image/*" />
+                </div>
+                <div class="size">
+                    <div>Kích Thước</div>
+                    <label for="size36">36</label>
+                    <input id="size36" type="checkbox" value="36" name="size" />
+                    <label for="size37">37</label>
+                    <input id="size37" type="checkbox" value="37" name="size" />
+                    <label for="size38">38</label>
+                    <input id="size38" type="checkbox" value="38" name="size" />
+                    <label for="size39">39</label>
+                    <input id="size39" type="checkbox" value="39" name="size" />
+                    <label for="size40">40</label>
+                    <input id="size40" type="checkbox" value="40" name="size" />
+                    <label for="size41">41</label>
+                    <input id="size41" type="checkbox" value="41" name="size" />
+                    <label for="size42">42</label>
+                    <input id="size42" type="checkbox" value="42" name="size" />
+                </div>
+                <div>
+                    <label class="label__upload--image" for="imageSub">Giày Trắng:</label>
+                    <input id="imageSub" type="file" name="shoesWhite" accept="image/*" multiple/>
+                </div>
+                <div>
+                    <label class="label__upload--image" for="imageSub">Giày Đen:</label>
+                    <input id="imageSub" type="file" name="shoesBlack" accept="image/*" multiple/>
+                </div>
+            </div>
+        </div>
+        <div class="form__add--button">
+            <button type="submit" class="btn__save">Lưu</button>
+            <button class="btn__cancel">Hủy</button>
+        </div>
+    </form>
+</div>
+
+<script src="/scripts/admin/openModal.js"></script>
+<script src="/scripts/admin/showImage.js"></script>

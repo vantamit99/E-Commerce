@@ -1,0 +1,12 @@
+.color {
+    & > div:last-child {
+        display: flex;
+        & > div:first-child {
+            margin-right: 25px;
+        }
+    }
+    img {
+        width: 60px;
+        height: 60px;
+    }
+}

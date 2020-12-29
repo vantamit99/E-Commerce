@@ -1,0 +1,38 @@
+.delete {
+    box-sizing: border-box;
+    padding: 20px;
+
+    height: 585px;
+    background-color: #ffffff;
+    overflow: auto;
+}
+.delete__title {
+    margin-bottom: 20px;
+}
+.form__actions {
+    display: flex;
+    justify-content: center;
+    button {
+        margin: 10px 5px;
+
+        border: 1px solid #000000;
+        outline: none;
+        cursor: pointer;
+    }
+    .btn__save {
+        width: 100px;
+        background-color: #38b638;
+        color: #ffffff;
+    }
+    .btn__cancel {
+        background-color: #f1ecec;
+        a {
+            display: block;
+            width: 100px;
+            height: 40px;
+            line-height: 40px;
+
+            color: #000000;
+        }
+    }
+}

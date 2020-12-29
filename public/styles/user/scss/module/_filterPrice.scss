@@ -1,0 +1,25 @@
+.section__filterPrice {
+    padding-top: 40px;
+}
+.filterPrice {
+    .title {
+        margin-bottom: 15px;
+        font-size: 20px;
+    }
+    & > div {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    button {
+        margin: 0 15px 10px 0;
+        padding: 10px 20px;
+        border: 1px solid #c5c3c3;
+        outline: none;
+
+        &.active {
+            background-color: $colorOrange;
+            color: #ffffff;
+            border: 1px solid #c5c3c3;
+        }
+    }
+}

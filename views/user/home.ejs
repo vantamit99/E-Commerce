@@ -1,0 +1,188 @@
+<main>
+    <section class="section__carousel">
+        <div class="container">
+            <div class="layout">
+                <div class="carousel">
+                    <div class="owl-carousel owl-theme owl-loaded">
+                        <div class="owl-stage-outer">
+                            <div class="owl-stage">
+                                <div class="owl-item">
+                                    <a href="#">
+                                        <img src="/assets/images/slide/1.jpg" />
+                                    </a>
+                                </div>
+                                <div class="owl-item">
+                                    <a href="#">
+                                        <img src="/assets/images/slide/2.jpg" />
+                                    </a>
+                                </div>
+                                <div class="owl-item">
+                                    <a href="#">
+                                        <img src="/assets/images/slide/3.jpg" />
+                                    </a>
+                                </div>
+                                <div class="owl-item">
+                                    <a href="#">
+                                        <img src="/assets/images/slide/4.jpg" />
+                                    </a>
+                                </div>
+                                <div class="owl-item">
+                                    <a href="#">
+                                        <img src="/assets/images/slide/5.jpg" />
+                                    </a>
+                                </div>
+                                <div class="owl-item">
+                                    <a href="#">
+                                        <img src="/assets/images/slide/6.jpg" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="newsTech">
+                    <div class="newsTech__home">
+                        <div class="newsTech__title">
+                            <div>
+                                <h4>TIN TỨC MỚI</h4>
+                            </div>
+                        </div>
+                        <div class="newsTech__details">
+                            <div>
+                                <span class="image">
+                                    <a href="#">
+                                        <img src="/assets/images/slide/4.jpg" />
+                                    </a>
+                                </span>
+                                <span class="des">
+                                    <a href="#">Giày Yeezy Boost 350 V2 Cloud White Khuấy Động Thị Trường Sneaker</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar__image">
+                    <a href="#">
+                        <img src="/assets/images/slide/3.jpg" />
+                    </a>
+                </div>
+                <div class="sidebar__image">
+                    <a href="#">
+                        <img src="/assets/images/slide/2.jpg" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section__filterPrice">
+        <div class="container">
+            <div class="filterPrice">
+                <h1 class="title">Lọc Theo Giá</h1>
+                <div>
+                    <button class="filterPrice__button filterPrice__all active">Tất Cả Sản Phẩm</button>
+                    <button class="filterPrice__button filterPrice__small">0 - 300.000</button>
+                    <button class="filterPrice__button filterPrice__medium">301.000 - 700.000</button>
+                    <button class="filterPrice__button filterPrice__high">Trên 700.000</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section__product">
+        <section class="section__popular"></section>
+        <section class="section__forYou">
+            <div class="container">
+                <div class="product">
+                    <h1 class="product__title">Sản Phẩm Dành Cho Bạn</h1>
+                    <div class="product__list">
+                        <% listPro.forEach(val => { %>
+                            <% 
+                                var sum = 0;
+                                if(val.rate.length > 0) {
+                                    sum = val.rate.map(val => val.star).reduce((total, current)=> {
+                                        return total + current;
+                                    })
+                                }
+                                var averageStar = sum / val.rate.length / 5 * 100;
+                            %>
+                            <div class="product__item">
+                                <% if(val.quantity == 0) { %>
+                                    <div class="product__soldout">
+                                        <img src="/assets/images/soldout.png" alt="">
+                                    </div>
+                                <% } %> 
+                                <a href="/product/<%- val._id %>">
+                                    <div class="card">
+                                        <div class="product__image">
+                                            <img src="/assets/uploads/<%- val.image %>" />
+                                        </div>
+                                        <div class="product__details">
+                                            <div class="product__details--title"><%- val.name %></div>
+                                            <div class="product__details--priceFirst">
+                                                <span>₫</span>
+                                                <% priceNew = val.price - val.price*val.discount/100 %>
+                                                <span class="price__new"><%- String(priceNew).replace(/(\d{3})$/g, ',000') %></span>
+                                            </div>
+                                            <div class="product__details--priceSecond">
+                                                <span>  
+                                                    <span>₫</span>
+                                                    <span class="price__old"><%- String(val.price).replace(/(\d{3})$/g, ',000') %></span>
+                                                </span>
+                                                <span class="discount">-<%- val.discount %>%</span>
+                                            </div>
+                                            <div class="product__details--rate">
+                                                <div class="rate">
+                                                    <span class="rate__star">
+                                                        <div class="star">
+                                                            <div class="star__default">
+                                                                <span>
+                                                                    <i class="far fa-star"></i>
+                                                                </span>
+                                                                <span>
+                                                                    <i class="far fa-star"></i>
+                                                                </span>
+                                                                <span>
+                                                                    <i class="far fa-star"></i>
+                                                                </span>
+                                                                <span>
+                                                                    <i class="far fa-star"></i>
+                                                                </span>
+                                                                <span>
+                                                                    <i class="far fa-star"></i>
+                                                                </span>
+                                                            </div>
+                                                            <div class="star__current" style="width: <%- averageStar %>%">
+                                                                <span>
+                                                                    <i class="fas fa-star"></i>
+                                                                </span>
+                                                                <span>
+                                                                    <i class="fas fa-star"></i>
+                                                                </span>
+                                                                <span>
+                                                                    <i class="fas fa-star"></i>
+                                                                </span>
+                                                                <span>
+                                                                    <i class="fas fa-star"></i>
+                                                                </span>
+                                                                <span>
+                                                                    <i class="fas fa-star"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </span>
+                                                    <span class="rate__count">(<%- val.rate.length %>)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        <% }) %>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</main>
+
+<script src="/scripts/user/filterPrice.js"></script>

@@ -1,0 +1,47 @@
+<div class="delete edit edit__product product__form--add">
+    <h2 class="delete__title">Delete</h2>
+    <form class="form" method="POST" action="/dashboard/product/delete/<%- infoPro._id %>">
+        <div class="form__add--container">
+            <div class="form__add--item">
+                <div class="form__group">
+                    <label for="proName">Tên Giày*:</label>
+                    <input id="proName" type="text" name="proName" value="<%- infoPro.name %>" disabled />
+                </div>
+                <div class="form__group">
+                    <label for="proPrice">Giá Giày*:</label>
+                    <input id="proPrice" type="number" min=0 max="100000000" name="proPrice" value="<%- infoPro.price %>" disabled />
+                </div>
+                <div class="form__group">
+                    <label for="proDiscount">Giảm Giá %:</label>
+                    <input id="proDiscount" type="number" min="0" max="100000000" name="proDiscount" value="<%- infoPro.discount %>" disabled />
+                </div>
+                <div class="form__group">
+                    <label for="proDescription">Mô Tả:</label>
+                    <textarea id="proDescription" rows="7" resize="false" name="proDescription" disabled><%- infoPro.description %></textarea>
+                </div>
+            </div>
+            <div class="form__add--item">
+                <div>
+                    <label class="label__upload--image" for="file">
+                        <span>Ảnh*:</span>
+                        <div>
+                            <img class="showProImage" src="/assets/uploads/<%- infoPro.image %>" />
+                        </div>
+                    </label>
+                    <input class="proImage"id="file" type="file" name="proImage" accept="image/*" disabled />
+                </div>
+                <div class="size">
+                    <div>Kích Thước</div>
+                    <% infoPro.size.forEach(val => { %>
+                        <label for="size<%- val %>"><%- val %></label>
+                        <input id="size<%- val %>" type="checkbox" checked value="<%- val %>" name="size" disabled />
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+        <div class="form__group form__actions">
+            <button class="btn__save" type="submit">Xóa</button>
+            <button class="btn__cancel" type="button"><a href="/dashboard/product">Hủy</a></button>
+        </div>
+    </form>
+</div>

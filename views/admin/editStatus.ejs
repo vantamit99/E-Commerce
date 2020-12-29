@@ -1,0 +1,17 @@
+<div class="edit">
+    <h2 class="edit__title">Edit</h2>
+    <form class="form" method="POST" action="/dashboard/status/edit/<%- docStatus._id %>">
+        <div class="form__group">
+            <label for="editIdStatus">Mã Trạng Thái</label>
+            <input id="editIdStatus" type="text" name="editIdStatus" value="<%- docStatus.idStatus %>" />
+        </div>
+        <div class="form__group">
+            <label for="editNameStatus">Tên Trạng Thái</label>
+            <input id="editNameStatus" type="text" name="editNameStatus" value="<%- docStatus.nameStatus %>" />
+        </div>
+        <div class="form__group form__actions">
+            <button class="btn__save" type="submit">Lưu</button>
+            <button class="btn__cancel" type="button"><a href="/dashboard/status">Hủy</a></button>
+        </div>
+    </form>
+</div>

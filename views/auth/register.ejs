@@ -1,0 +1,44 @@
+<section class="section__auth section__register">
+    <div class="container">
+        <div class="auth register">
+            <div class="auth__title">
+                <h1>Đăng Ký Tài Khoản Của Bạn</h1>
+                <span>
+                    <small>Đã có tài khoản? <a href="/auth/login">login</a> ở đây.</small>
+                </span>
+            </div>
+            <div class="auth__form">
+                <form action="/auth/register" method="POST">
+                    <% if(error.length > 0) { %>
+                        <% error.map(err => { %>
+                            <div class="error"><%- err.msg %></div>
+                        <% }) %>
+                    <% } %>
+                    <div>
+                        <label for="firstname">Họ Tên Đệm*</label>
+                        <input id="firstname" type="text" name="firstname" placeholder="Họ Tên Đệm" required/>
+                    </div>
+                    <div>
+                        <label for="lastname">Tên*</label>
+                        <input id="lastname" type="text" name="lastname" placeholder="Tên" required />
+                    </div>
+                    <div>
+                        <label for="phone">Số Điện Thoại*</label>
+                        <input id="phone" type="text" name="phone" placeholder="Số Điện Thoại" required />
+                    </div>
+                    <div>
+                        <label for="email">Email*</label>
+                        <input id="email" type="email" name="email" placeholder="Email" required />
+                    </div>
+                    <div>
+                        <label for="password">Mật Khẩu*</label>
+                        <input id="password" type="password" name="password" placeholder="Password" required />
+                    </div>
+                    <div>
+                        <button id="register-form" type="submit">Đăng Ký</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

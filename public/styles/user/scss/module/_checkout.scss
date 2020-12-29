@@ -1,0 +1,16 @@
+.checkout  {
+    padding: 40px 0;
+    & > h1,
+    & > div {
+        margin-bottom: 30px;
+        text-align: center;
+        & a {
+            padding: 10px 15px;
+            background-color: $colorOrange;
+            color: #ffffff;
+        }
+    }
+    & > h1 {
+        margin-bottom: 20px;
+    }
+}

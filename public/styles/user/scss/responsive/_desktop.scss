@@ -1,0 +1,48 @@
+@media (max-width: 1366px) {
+    .container {
+        max-width: 1160px;
+    }
+    // === homepage === //
+
+}
+@media (max-width: 1195px) {
+    .container {
+        max-width: 1105px;
+    }
+    .cart__list table .col__name > div {
+        width: 200px;
+    }
+}
+@media (max-width: 1112px) {
+    .container {
+        max-width: 1050px;
+    }
+    // === order history === //
+    .history__item table .col__name,
+    .history__item table .col__name > div {
+        width: 250px;
+    }
+    .history__item table .col__name {
+        padding-right: 15px;
+    }
+}
+@media (max-width: 1070px) {
+    .container {
+        max-width: 1020px;
+    }
+    // === footer === //
+    .footer__about {
+        width: 22%;
+    }
+    .footer__about div:nth-child(2) {
+        font-size: 15px;
+    }
+    .footer .item *:not(h2) {
+        font-size: 15px;
+    }
+    .footer .item h2 {
+        font-size: 19px;
+    }
+    // === homepage === //
+    
+}

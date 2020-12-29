@@ -1,0 +1,19 @@
+<main>
+    <section class="section__checkout">
+        <div class="container">
+            <div class="checkout">
+                <h1>Cảm Ơn Bạn Đã Mua Hàng</h1>
+                <div>Mã đơn hàng của bạn là: 
+                    <% if(idOrder) { %>
+                        <span><%- idOrder %></span>
+                    <% } else { %>
+                        <span>Đặt hàng thất bại</span>
+                    <% } %>
+                </div>
+                <div>
+                    <a href="/">Tiếp Tục Mua Sắm</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

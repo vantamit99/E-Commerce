@@ -1,0 +1,176 @@
+<main>
+    <section class="section__cart">
+        <div class="container">
+            <div class="cart">
+                <div class="cart__list">
+                    <table>                        
+                        <tr>
+                            <td>
+                                <input checked type="checkbox" disabled />                                
+                            </td>
+                            <td class="col__image">
+                                <a href="javascript:void(0)">
+                                    <img src="/assets/uploads/<%- docPro.image %>" />
+                                </a>
+                            </td>
+                            <td class="col__name">
+                                <div><a href="javascript:void(0)"><%- docPro.name %></a></div>
+                                <div><a href="javascript:void(0)"><%- color %> & size: <%- size %></a></div>
+                            </td>
+                            <td class="col__price">
+                                <% priceNew = docPro.price - docPro.price*docPro.discount/100 %>
+                                <div class="col__price--new"><%- String(priceNew).replace(/\d{3}$/g, ',000') %></div>
+                                <div class="col__price--old"><%- String(docPro.price).replace(/\d{3}$/g, ',000') %></div>
+                                <div class="col__price--discount">-<%- String(docPro.discount).replace(/\d{3}$/g, ',000') %>%</div>                                
+                            </td>
+                            <td class="col__quantity">
+                                <button disabled>-</button>
+                                <input type="text" value="<%- quantity %>"  disabled />
+                                <button disabled>+</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="cart__sidebar">
+                    <div class="list__order">
+                        <form action="/payment/checkout" method="POST">
+                            <h2>Thông tin nhận hàng</h2>
+                            <div class="shipAndBill">
+                                <ol>
+                                    <% if(docUser) { %>
+                                        <li>
+                                            <label for="peopleRecive">Tên người nhận:</label>
+                                            <input id="peopleRecive" type="text" name="peopleRecive" value="<%- docUser.lastname %>" placeholder="Tên người nhận" required/>
+                                        </li>
+                                        <li>
+                                            <label for="addressRecive">Địa chỉ nhận:</label>
+                                            <input id="addressRecive" type="text" name="addressRecive" value="<%- docUser.cus.deliveryAddress %>" placeholder="Địa chi nhận" required />
+                                        </li>
+                                        <li>
+                                            <label for="phone">Số điện thoại:</label>
+                                            <input id="phone" type="text" value="<%- docUser.cus.phone %>" name="phone" placeholder="Số điện thoại" required />
+                                        </li>
+                                    <% } else { %>
+                                        <li>
+                                            <label for="peopleRecive">Tên người nhận:</label>
+                                            <input id="peopleRecive" type="text" name="peopleRecive" value="" placeholder="Tên người nhận" required/>
+                                        </li>
+                                        <li>
+                                            <label for="addressRecive">Địa chỉ nhận:</label>
+                                            <input id="addressRecive" type="text" name="addressRecive" value="" placeholder="Địa chi nhận" required />
+                                        </li>
+                                        <li>
+                                            <label for="phone">Số điện thoại:</label>
+                                            <input id="phone" type="text" value="" name="phone" placeholder="Số điện thoại" required />
+                                        </li>
+                                    <% } %>
+                                    <li>
+                                        <label>Phương thức thanh toán:</label>
+                                        <select class="methodPayment" name="methodPayment">
+                                            <option selected value="thanh toán khi nhận hàng">Thanh toán khi nhận hàng</option>                                                
+                                            <option value="paypal">Paypal</option>
+                                        </select>
+                                    </li>
+                                </ol>
+                            </div>
+                            <h2>Chi tiết đơn hàng</h2>
+                            <div class="order__item">
+                                <div class="order__item--left">
+                                    <div>Tổng số lượng(<%- quantity %>)</div>
+                                    <% if(rankCurrent != "anonymous") { %>
+                                        <div>Giảm</div>
+                                    <% } %> 
+                                    <div>Phí vận chuyển</div>
+                                    <% if(docUser) { %>
+                                        <div>
+                                            <input type="text" placeholder="Nhập mã giảm giá" />
+                                        </div>
+                                    <% } %>
+                                    <div>Tổng tiền:</div>
+                                </div>
+                                <div class="order__item--right">
+                                    <% moneyPro = quantity*priceNew %>
+                                    <div><%- String(moneyPro).replace(/\d{3}$/g, ',000') %>đ</div>
+                                    <% if(rankCurrent == "anonymous") { %>
+                                        <div>30,000đ</div>
+                                    <% } %>
+                                    <% if(rankCurrent == "Bronze") { %>
+                                        <div>0%</div>
+                                        <div>Freeship</div>                                
+                                    <% } %>
+                                    <% if(rankCurrent == "Silver") { %>
+                                        <div>2%</div>
+                                        <div>Freeship</div>                                            
+                                    <% } %>
+                                    <% if(rankCurrent == "Gold") { %>
+                                        <div>4%</div>
+                                        <div>Freeship</div>                                            
+                                    <% } %>
+                                    <% if(rankCurrent == "Diamond") { %>
+                                        <div>6%</div>
+                                        <div>Freeship</div>                                            
+                                    <% } %>
+                                    <% if(rankCurrent == "Platinum") { %>
+                                        <div>8%</div>
+                                        <div>Freeship</div>                                            
+                                    <% } %>                                
+                                    <% if(docUser) { %>
+                                        <div>
+                                            <button type="button" class="apply">Kiểm Tra</button>
+                                        </div>
+                                    <% } %>                                   
+                                    <% if(rankCurrent == "anonymous") { %>
+                                        <div><%- String(moneyPro+30000).replace(/\d{3}$/g, ',000') %>đ</div>
+                                    <% } %>     
+                                    <% if(rankCurrent == "Bronze") { %>
+                                        <div><%- String(moneyPro).replace(/\d{3}$/g, ',000') %>đ</div>
+                                    <% } %>                                  
+                                    <% if(rankCurrent == "Silver") { %>
+                                        <div><%- String(moneyPro*98/100).replace(/\d{3}$/g, ',000') %>đ</div>
+                                    <% } %>
+                                    <% if(rankCurrent == "Gold") { %>
+                                        <div><%- String(moneyPro*96/100).replace(/\d{3}$/g, ',000') %>đ</div>
+                                    <% } %>
+                                    <% if(rankCurrent == "Diamond") { %>
+                                        <div><%- String(moneyPro*94/100).replace(/\d{3}$/g, ',000') %>đ</div>
+                                    <% } %>
+                                    <% if(rankCurrent == "Platinum") { %>
+                                        <div><%- String(moneyPro*92/100).replace(/\d{3}$/g, ',000') %>đ</div>
+                                    <% } %>                                  
+                                </div>
+                            </div>
+                            <div>
+                                <input type="hidden" value="<%- moneyPro %>" name="moneyPro" />
+                                <% if(rankCurrent == "anonymous") { %>
+                                    <input type="hidden" value="30000" name="shipping" />
+                                <% } else { %>
+                                    <input type="hidden" value="0" name="shipping" />
+                                <% } %>
+                                <% if(rankCurrent == "anonymous") { %>                                    
+                                    <input type="hidden" value="<%- moneyPro+30000 %>" name="totalAllMoney" />
+                                <% } %>     
+                                <% if(rankCurrent == "Bronze") { %>
+                                    <input type="hidden" value="<%- moneyPro %>" name="totalAllMoney" />
+                                <% } %>                                  
+                                <% if(rankCurrent == "Silver") { %>                                
+                                    <input type="hidden" value="<%- moneyPro*98/100 %>" name="totalAllMoney" />
+                                <% } %>
+                                <% if(rankCurrent == "Gold") { %>                                   
+                                    <input type="hidden" value="<%- moneyPro*96/100 %>" name="totalAllMoney" />
+                                <% } %>
+                                <% if(rankCurrent == "Diamond") { %>                                    
+                                    <input type="hidden" value="<%- moneyPro*94/100 %>" name="totalAllMoney" />
+                                <% } %>
+                                <% if(rankCurrent == "Platinum") { %>                                   
+                                    <input type="hidden" value="<%- moneyPro*92/100 %>" name="totalAllMoney" />
+                                <% } %>     
+                                
+                                <button type="submit" class="confirmCart">ĐẶT HÀNG</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

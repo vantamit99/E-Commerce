@@ -1,0 +1,108 @@
+<main>
+    <section class="section__profile">
+        <div class="container">
+            <div class="profile">
+                <div class="profile__home">
+                    <form action="/profile" method="POST" enctype="multipart/form-data">
+                        <div class="form__group file__image">
+                            <label for="fileImage">
+                                <img class="showImage" src="<%- docCus.image %>" />
+                                <img class="rankImage" src="<%- dataRank.image %>" />
+                            </label>
+                            <input class="changeImage" id="fileImage" type="file" name="image" />
+                        </div>
+                        <div class="form__group">
+                            <div>
+                                <span>Hạng: <b><%- dataRank.name %></b></span>
+                                <span class="processRank">
+                                    <span class="processCurrent" style="width: <%- dataRank.perProcess %>%"></span>
+                                    <span class="pointCurrent"><%- dataRank.pointCurrent %></span>
+                                    <span class="pointRank"><%- dataRank.rankNext.pointRank %></span>
+                                    <div class="pointRemain">
+                                        <span>Mua thêm <%- dataRank.pointRemain %> VND. Để lên hạng <%- dataRank.rankNext.nameRank %></span>
+                                    </div>
+                                </span>                                
+                            </div>
+                        </div>
+                        <div class="form__group">
+                            <label for="firstname">Họ:</label>
+                            <input id="firstname" type="text" value="<%- docCus.user.firstname %>" name="firstname" />
+                        </div>
+                        <div class="form__group">
+                            <label for="lastname">Tên:</label>
+                            <input id="lastname" type="text" value="<%- docCus.user.lastname %>" name="lastname" />
+                        </div>
+                        <div class="form__group">
+                            <label for="deliveryAddress">Địa chỉ nhận hàng:</label>
+                            <input id="deliveryAddress" type="text" value="<%- docCus.deliveryAddress %>" name="deliveryAddress" />
+                        </div>
+                        <div class="form__group">
+                            <label for="phone">Số điện thoại:</label>
+                            <input id="phone" type="text" value="<%- docCus.phone %>" name="phone" />
+                        </div>
+                        <div class="form__group actions">
+                            <button class="save">Lưu</button>
+                            <button class="cancel" type="button">
+                                <a href="/">Hủy</a>
+                            </button>
+                        </div>
+                        <input class="isSaveSuccess" type="hidden" value="<%- saveSuccess %>" />
+                    </form>
+                </div>
+            </div>                
+        </div>
+    </section>
+</main>
+
+<div class="modal__profile">
+    <div class="modal__profile--home">
+        <div>Đã Cập Nhật Dữ Liệu Thành Công</div>
+        <button class="modal__profile--ok">OK</button>
+    </div>
+</div>
+
+<script>
+    // === show image === //
+    var isSave = document.querySelector('.isSaveSuccess');
+    var modal = document.querySelector('.modal__profile');
+    var ok = document.querySelector('.modal__profile--ok');
+
+    if(isSave.value == "true") {
+        modal.classList.add('modal__profile--active');
+        ok.addEventListener('click', ()=> {
+            modal.classList.remove('modal__profile--active');
+            document.cookie = "isSaveProfile=; expires=Thu, 01 Jan 1970 00:00:00 UTC"
+        })
+    }
+
+
+    const showImage = function() {
+        var image = document.querySelector('.changeImage');
+        var show = document.querySelector('.showImage');
+
+        image.addEventListener('change', (e)=> {
+            var fileReader = new FileReader();
+            var infoFile = e.target.files[0];
+            
+            fileReader.readAsDataURL(infoFile);
+
+            fileReader.onload = function(e) {
+                var url = fileReader.result;
+                show.setAttribute('src', url);
+            };
+        });
+    };
+    showImage();
+
+    // === show point rank remain === //
+    var process = document.querySelector('.processRank');
+    var pointRemain = document.querySelector('.pointRemain');
+
+    process.addEventListener('mouseover', ()=> {
+        pointRemain.classList.add('active');
+    });
+    process.addEventListener('mouseout', ()=> {
+        pointRemain.classList.remove('active');
+    })
+
+</script>

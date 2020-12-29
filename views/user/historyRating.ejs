@@ -1,0 +1,150 @@
+<main>
+    <section class="section__historyRating">
+        <div class="container">
+            <div class="historyRating">
+                <div class="historyRating__home">
+                    <div class="historyRating__list">
+                        <% docRating.forEach(item => { %>
+                            <div class="historyRating__item">
+                                <div class="title">Đánh giá và Ý kiến về sản phẩm:</div>
+                                <div class="rating__details">
+                                    <div class="rating__info info__image">
+                                        <a href="/product/<%- item.product._id %>">
+                                            <img src="/assets/uploads/<%- item.product.image %>" />
+                                        </a>
+                                    </div>
+                                    <div class="rating__info info__form">
+                                        <div class="nameProduct"><%- item.product.name %></div>
+                                        <div class="rating__form">
+                                            <form>
+                                                <div class="star form__group">                                        
+                                                    <% if(item.star == '5') { %>
+                                                        <input id="star5" type="radio" value="5" name="star" checked  disabled/>
+                                                        <label for="star5" title="Rất đẹp">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                        <input id="star4" type="radio" value="4" name="star" disabled />
+                                                        <label for="star4" title="Đẹp">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                        <input id="star3" type="radio" value="3" name="star" disabled />
+                                                        <label for="star3" title="Tạm được">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                        <input id="star2" type="radio" value="2" name="star" disabled />
+                                                        <label for="star2" title="Xấu">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                        <input id="star1" type="radio" value="1" name="star" disabled />
+                                                        <label for="star1" title="Quá tệ">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                    <% } %>
+                                                    <% if(item.star == '4') { %>
+                                                        <input id="star5" type="radio" value="5" name="star" disabled/>
+                                                        <label for="star5" title="Rất đẹp">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                        <input id="star4" type="radio" value="4" name="star" disabled checked />
+                                                        <label for="star4" title="Đẹp">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                        <input id="star3" type="radio" value="3" name="star" disabled />
+                                                        <label for="star3" title="Tạm được">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                        <input id="star2" type="radio" value="2" name="star" disabled />
+                                                        <label for="star2" title="Xấu">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                        <input id="star1" type="radio" value="1" name="star" disabled />
+                                                        <label for="star1" title="Quá tệ">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                    <% } %>
+                                                    <% if(item.star == '3') { %>
+                                                        <input id="star5" type="radio" value="5" name="star" disabled/>
+                                                        <label for="star5" title="Rất đẹp">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                        <input id="star4" type="radio" value="4" name="star" disabled />
+                                                        <label for="star4" title="Đẹp">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                        <input id="star3" type="radio" value="3" name="star" disabled checked />
+                                                        <label for="star3" title="Tạm được">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                        <input id="star2" type="radio" value="2" name="star" disabled />
+                                                        <label for="star2" title="Xấu">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                        <input id="star1" type="radio" value="1" name="star" disabled />
+                                                        <label for="star1" title="Quá tệ">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                    <% } %>
+                                                    <% if(item.star == '2') { %>
+                                                        <input id="star5" type="radio" value="5" name="star" disabled/>
+                                                        <label for="star5" title="Rất đẹp">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                        <input id="star4" type="radio" value="4" name="star" disabled />
+                                                        <label for="star4" title="Đẹp">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                        <input id="star3" type="radio" value="3" name="star" disabled />
+                                                        <label for="star3" title="Tạm được">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                        <input id="star2" type="radio" value="2" name="star" disabled checked />
+                                                        <label for="star2" title="Xấu">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                        <input id="star1" type="radio" value="1" name="star" disabled />
+                                                        <label for="star1" title="Quá tệ">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                    <% } %>
+                                                    <% if(item.star == '1') { %>
+                                                        <input id="star5" type="radio" value="5" name="star" disabled/>
+                                                        <label for="star5" title="Rất đẹp">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                        <input id="star4" type="radio" value="4" name="star" disabled />
+                                                        <label for="star4" title="Đẹp">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                        <input id="star3" type="radio" value="3" name="star" disabled />
+                                                        <label for="star3" title="Tạm được">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                        <input id="star2" type="radio" value="2" name="star" disabled />
+                                                        <label for="star2" title="Xấu">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                        <input id="star1" type="radio" value="1" name="star" disabled checked />
+                                                        <label for="star1" title="Quá tệ">
+                                                            <i class="fa fa-star"></i>
+                                                        </label>
+                                                    <% } %>
+                                                </div>
+                                                <div class="review form__group">
+                                                    <div class="review__title">Ý kiến cá nhân</div>
+                                                    <div>
+                                                        <textarea name="review" disabled><%- item.review %></textarea>
+                                                        <input class="valueStar" type="hidden" value="<%- item.star %>" />
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

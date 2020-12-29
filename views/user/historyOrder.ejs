@@ -1,0 +1,151 @@
+<main>
+    <section class="section__history">
+        <div class="container">
+            <div class="history">
+                <h2 class="history__title">Danh Sách Đơn Hàng</h2>
+                <div class="history__list">
+                    <% docOrder.forEach(val => { %>
+                        <div class="history__item">
+                            <table>
+                                <tr class="row__codeOrder">
+                                    <td colspan="5">
+                                        <div>Đơn hàng: <a href="/order/history/details/<%- val._id %>"><%- val._id %></a></div>
+                                        <div>Ngày đặt: <%- val.dateBook %></div>
+                                    </td>
+                                    <td class="col__manage">
+                                        <a href="/order/history/details/<%- val._id %>">MANAGE</a>
+                                    </td>
+                                </tr>
+                                <% val.listProduct.forEach(item => { %>
+                                    <tr class="row__infoOrder">
+                                        <td class="col__image">
+                                            <a href="/product/<%- item.product._id %>">
+                                                <img src="/assets/uploads/<%- item.product.image %>" />
+                                            </a>
+                                        </td>
+                                        <td class="col__name">
+                                            <div><a href="/product/<%- item.product._id %>"><%- item.product.name %></a></div>
+                                            <div><a href="/product/<%- item.product._id %>"><%- item.color %> & size: <%- item.size %></a></div>
+                                        </td>
+                                        <td class="col__quantity">
+                                            <span>Số Lượng:</span>
+                                            <span><%- item.quantity %></span>
+                                        </td>
+                                        <td class="col__status">
+                                            <% if(val.status == '0') { %>
+                                                <span>Đã Hủy</span>
+                                            <% } %>
+                                            <% if(val.status == '1') { %>
+                                                <span>Chưa Xử Lý</span>
+                                            <% } %>
+                                            <% if(val.status == '2') { %>
+                                                <span>Đã Đóng Gói</span>
+                                            <% } %>
+                                            <% if(val.status == '3') { %>
+                                                <span>Đang Vận Chuyển</span>
+                                            <% } %>
+                                            <% if(val.status == '4') { %>
+                                                <span>Đã Giao</span>
+                                            <% } %>
+                                        </td>
+                                        <% if(val.status == '1') { %>
+                                            <td class="col__rating">
+                                                <span>
+                                                    <a href="/order/delete/<%- val._id %>">Hủy Đơn</a>
+                                                </span>
+                                            </td>
+                                        <% } %>
+                                        <% if(val.status == '4') { %>
+                                            <% if(!item.isRating) { %>
+                                                <td class="col__rating">
+                                                    <span>
+                                                        <a href="/rating/product/<%- item._id %>">Đánh Giá</a>
+                                                    </span>
+                                                </td>
+                                            <% } else { %>
+                                                <td></td>
+                                            <% } %>
+                                        <% } else { %>
+                                            <td>
+                                                <!-- <span style="display: block; width: 80px;"></span> -->
+                                            </td>
+                                        <% } %>
+                                    </tr>
+                                <% }) %>
+                            </table>
+                        </div>
+                    <% }) %>
+                </div>
+                <div class="mobile__history--list">
+                    <% docOrder.forEach(val => { %>
+                        <div class="item">
+                            <div class="row__idOrder">
+                                <div>
+                                    <div>Đơn hàng: <a href="/order/history/details/<%- val._id %>"><%- val._id %></a></div>
+                                    <div>Ngày đặt: <%- val.dateBook %></div>
+                                </div>
+                                <div>
+                                    <a href="/order/history/details/<%- val._id %>">MANAGE</a>
+                                </div>
+                            </div>
+                            <div class="row__listOrder">
+                                <% val.listProduct.forEach(item => { %>
+                                    <div class="row__listOrder--item">
+                                        <div>
+                                            <a href="/product/<%- item.product._id %>">
+                                                <img src="/assets/uploads/<%- item.product.image %>" />
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <div class="row__nameColor">
+                                                <div class="col__pro--name"><a href="/product/<%- item.product._id %>"><%- item.product.name %></a></div>
+                                                <div class="col__pro--color"><a href="/product/<%- item.product._id %>"><%- item.color %> & size: <%- item.size %></a></div>
+                                            </div>
+                                            <div class="row__quantityStatus">
+                                                <div class="col__quantity">
+                                                    <span>Số Lượng:</span>
+                                                    <span><%- item.quantity %></span>
+                                                </div>
+                                                <div class="col__status">
+                                                    <% if(val.status == '0') { %>
+                                                        <span>Đã Hủy</span>
+                                                    <% } %>
+                                                    <% if(val.status == '1') { %>
+                                                        <span>Chưa Xử Lý</span>
+                                                    <% } %>
+                                                    <% if(val.status == '2') { %>
+                                                        <span>Đã Đóng Gói</span>
+                                                    <% } %>
+                                                    <% if(val.status == '3') { %>
+                                                        <span>Đang Vận Chuyển</span>
+                                                    <% } %>
+                                                    <% if(val.status == '4') { %>
+                                                        <span>Đã Giao</span>
+                                                    <% } %>
+
+                                                    <% if(val.status == '1') { %>
+                                                        <span class="cancel__order">
+                                                            <a href="/order/delete/<%- val._id %>">Hủy Đơn</a>
+                                                        </span>
+                                                    <% } %>
+
+                                                    <% if(val.status == '4') { %>
+                                                        <% if(!item.isRating) { %>
+                                                            <span class="rating__order">
+                                                                <a href="/rating/product/<%- item._id %>">Đánh Giá</a>
+                                                            </span>
+                                                        <% } %>
+                                                    <% } %> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% }) %>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
