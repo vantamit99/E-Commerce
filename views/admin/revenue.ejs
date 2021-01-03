@@ -1,7 +1,36 @@
 <div class="revenue">
+    <form>
+        <label for="chooseMonth">Tháng</label>        
+        <select id="chooseMonth" name="chooseMonth">
+            <% month.map(val => { %>
+                <% if(val == monthCurrent) { %>
+                    <option value="<%- val %>" selected><%- val %></option>
+                <% } else { %>
+                    <option value="<%- val %>"><%- val %></option>
+                <% } %>
+            <% }) %>
+        </select>
+        <label for="chooseYear">Năm</label>
+        <input type="text" id="chooseYear" name="chooseYear" value="<%- yearCurrent %>" style="max-width: 60px;" />
+        <span id="err"></span>
+        <button id="submitData" type="button">Lọc</button>
+    </form>
     <canvas id="myChart"></canvas>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 <script src="/scripts/admin/chartJs.js"></script>
+<script>
+    let year = document.getElementById('chooseYear');
+    let err = document.getElementById('err');  
+    year.addEventListener('keypress', ()=> {
+        if(/[a-zA-Z]/g.test(year.value)) {
+            err.innerHTML = "Năm phải là số";
+            err.style.fontSize = "12px";
+            err.style.color = "#ff0000";
+        } else {
+            err.innerHTML = "";
+        }
+    });
+</script>
 

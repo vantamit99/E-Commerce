@@ -534,7 +534,7 @@ module.exports.checkoutPost = async function (req, res) {
         const updateQuatity = function() {
             listPro.map( async (val) => {
                 const quantityCurrent = val.product.quantity - val.quantity;
-                console.log(quantityCurrent);
+                //console.log(quantityCurrent);
                 await proModel.findByIdAndUpdate(val.product._id, {$set: {quantity: quantityCurrent}})
             });
         }();
