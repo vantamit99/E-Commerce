@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
-const port = 1999;
+const port = process.env.PORT || 1999;
 const expresslayout = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -35,7 +35,8 @@ const filterPriceRoute = require('./routes/user/filterPrice.route');
 const lookupPhoneRoute = require('./routes/user/lookupPhone.route');
 
 
-mongoose.connect('mongodb://localhost/shoes', {useNewUrlParser: true});
+const port = process.env.PORT || 1999;
+mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost/shoes', {useNewUrlParser: true});
 
 app.use(cookieParser());
 app.use(expresslayout);
