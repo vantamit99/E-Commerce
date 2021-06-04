@@ -34,8 +34,6 @@ const commentRoute = require('./routes/user/comment.route');
 const filterPriceRoute = require('./routes/user/filterPrice.route');
 const lookupPhoneRoute = require('./routes/user/lookupPhone.route');
 
-
-const port = process.env.PORT || 1999;
 mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost/shoes', {useNewUrlParser: true});
 
 app.use(cookieParser());
@@ -77,10 +75,7 @@ app.use('/auth', authRoute);
 server.listen(port,()=>console.log('Server running...'));
 
 // socket //
-io.on('connection', socket => {
-    // console.log(`${socket.id} connection`);
-    // socket.on('disconnect', ()=> console.log(`${socket.id} disconnect`));
-
+io.on('connection', socket => {;
     socket.on('sendToAdmin', (msg) => {
         io.sockets.emit('sendToClient', msg);
     });
